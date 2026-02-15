@@ -1,0 +1,35 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+const CommunityCTA = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="relative z-10 px-6 py-24">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="mx-auto max-w-4xl text-center"
+      >
+        <h2 className="font-heading text-2xl font-bold text-foreground md:text-4xl">
+          Entre para comunidade <span className="text-gradient-green">WEB3DEV</span> e faça parte do futuro da tecnologia
+        </h2>
+        <div className="mt-8">
+          <a
+            href="https://discord.gg/web3dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glow-button inline-block"
+          >
+            Participar agora
+          </a>
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default CommunityCTA;
