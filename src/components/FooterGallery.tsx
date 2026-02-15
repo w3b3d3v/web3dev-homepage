@@ -15,39 +15,27 @@ const FooterGallery = () => {
 
   return (
     <footer className="relative z-10">
-      {/* Gallery strip */}
       <div ref={ref} className="flex overflow-hidden">
         {images.map((img, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: i * 0.1 }}
-            className="h-48 w-1/3 flex-shrink-0 sm:w-1/4 md:h-64 md:w-1/6"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: i * 0.1, duration: 0.6 }}
+            className="group relative h-48 w-1/3 flex-shrink-0 overflow-hidden sm:w-1/4 md:h-72 md:w-1/6"
           >
             <img
               src={img}
               alt="WEB3DEV community event"
-              className="h-full w-full object-cover opacity-70 transition-opacity hover:opacity-100"
+              className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:opacity-100 group-hover:scale-110"
               loading="lazy"
             />
+            {/* Green glow overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            {/* Bottom edge glow */}
+            <div className="absolute inset-x-0 bottom-0 h-1 bg-primary/0 transition-all duration-500 group-hover:bg-primary/40 group-hover:shadow-[0_0_20px_hsl(145_100%_50%/0.3)]" />
           </motion.div>
         ))}
-      </div>
-
-      {/* Footer bar */}
-      <div className="border-t border-border/30 bg-background/80 px-6 py-8 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <div className="font-heading text-lg font-bold text-foreground">
-            <span className="text-gradient-green">WEB3</span>DEV
-          </div>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="https://discord.gg/web3dev" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Discord</a>
-            <a href="https://www.youtube.com/@web3dev" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
-            <a href="https://pt.w3d.community/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Blog</a>
-          </div>
-          <p className="text-xs text-muted-foreground">© 2024 WEB3DEV. Todos os direitos reservados.</p>
-        </div>
       </div>
     </footer>
   );

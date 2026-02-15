@@ -1,17 +1,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const stats = [
-  { value: "7.970+", label: "Membros no Discord" },
-  { value: "1.820+", label: "Artigos Técnicos" },
-  { value: "12k+", label: "Inscrições em Bootcamps" },
-  { value: "792", label: "Graduações em Bootcamps" },
-  { value: "700+", label: "Vídeos no YouTube" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const StatsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "7.970+", label: t("stats.discord") },
+    { value: "1.820+", label: t("stats.articles") },
+    { value: "12k+", label: t("stats.bootcampReg") },
+    { value: "792", label: t("stats.bootcampGrad") },
+    { value: "700+", label: t("stats.videos") },
+  ];
 
   return (
     <section className="relative z-10 px-6 py-20">

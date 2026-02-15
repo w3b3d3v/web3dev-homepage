@@ -1,9 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BootcampCTA = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section className="relative z-10 px-6 py-24">
@@ -18,8 +20,8 @@ const BootcampCTA = () => {
         }}
       >
         <h2 className="font-heading text-2xl font-bold text-foreground md:text-4xl">
-          Mergulhe no mundo de Rust e blockchain.{" "}
-          <span className="text-gradient-green">Domine o Polkadot SDK como um PRO</span>
+          {t("bootcamp.title")}{" "}
+          <span className="text-gradient-green">{t("bootcamp.highlight")}</span>
         </h2>
         <div className="mt-8">
           <a
@@ -28,7 +30,7 @@ const BootcampCTA = () => {
             rel="noopener noreferrer"
             className="glow-button inline-block"
           >
-            Saber Mais
+            {t("bootcamp.cta")}
           </a>
         </div>
       </motion.div>
