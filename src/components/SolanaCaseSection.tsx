@@ -4,41 +4,43 @@ import solanaClassroom from "@/assets/solana-classroom.webp";
 import bootcampClass from "@/assets/bootcamp-class.webp";
 import developersTable from "@/assets/developers-table.webp";
 import solanaThumbnail from "@/assets/solana-thumbnail.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SolanaCaseSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const caseStats = [
-    { value: "4.9k", label: "Page Views Geradas" },
-    { value: "1.5k", label: "Devs Impactados" },
-    { value: "50+", label: "Graduados" },
+    { value: "4.9k", label: t("solana.stat1.label") },
+    { value: "1.5k", label: t("solana.stat2.label") },
+    { value: "50+", label: t("solana.stat3.label") },
   ];
 
   const cards = [
     {
-      title: "Tradução e Educação",
-      description: "Artigos técnicos em português e espanhol.",
+      title: t("solana.card1.title"),
+      description: t("solana.card1.desc"),
       link: "https://pt.w3d.community/search?q=solana",
     },
     {
-      title: "Co-produção do Hackathon Hyperdrive 2023",
-      description: "Workshops técnicos e suporte para equipes.",
+      title: t("solana.card2.title"),
+      description: t("solana.card2.desc"),
       image: solanaClassroom,
     },
     {
-      title: "Bootcamps Especializados",
-      description: "Criação de smart contracts, desenvolvimento de coleções de NFTs e solução de pagamentos.",
+      title: t("solana.card3.title"),
+      description: t("solana.card3.desc"),
       image: bootcampClass,
     },
     {
-      title: "Desenvolvimento de Talentos",
-      description: "Rede de mais de 130 desenvolvedores Solana formados.",
+      title: t("solana.card4.title"),
+      description: t("solana.card4.desc"),
       image: developersTable,
     },
     {
-      title: "Assista a Playlist",
-      description: "Série de vídeos sobre o ecosistema Solana.",
+      title: t("solana.card5.title"),
+      description: t("solana.card5.desc"),
       image: solanaThumbnail,
       link: "https://youtube.com/playlist?list=PLVX4xVoD65UOnAi_8t69_s7Dh4WiTziS2",
     },
@@ -53,10 +55,9 @@ const SolanaCaseSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            Case <span className="text-gradient-green">Solana</span>
+            {t("solana.title")} <span className="text-gradient-green">{t("solana.highlight")}</span>
           </h2>
 
-          {/* Stats row */}
           <div className="mt-10 flex flex-wrap gap-8">
             {caseStats.map((stat) => (
               <div key={stat.label}>
@@ -67,7 +68,6 @@ const SolanaCaseSection = () => {
           </div>
         </motion.div>
 
-        {/* Cards grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card, i) => (
             <motion.div
@@ -97,7 +97,7 @@ const SolanaCaseSection = () => {
                     rel="noopener noreferrer"
                     className="mt-3 inline-block text-sm text-primary hover:underline"
                   >
-                    Ver mais →
+                    {t("solana.viewMore")}
                   </a>
                 )}
               </div>

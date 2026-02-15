@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import studyGroup from "@/assets/study-group.webp";
-import studentsDesk from "@/assets/students-desk.webp";
 import bootcampGroup from "@/assets/bootcamp-group.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeatureCard = ({
   title,
@@ -54,32 +54,30 @@ const FeatureCard = ({
 };
 
 const FeaturesSection = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
-      title: "Grupos de Estudo em",
-      titleAccent: "Comunidade",
-      description:
-        "Nossos membros têm a oportunidade de evoluir para líderes de grupos de estudos ganhando reconhecimento e autoridade.",
+      title: t("features.0.title"),
+      titleAccent: t("features.0.accent"),
+      description: t("features.0.desc"),
       image: studyGroup,
       imageAlt: "Developer studying at computer with community",
     },
     {
-      title: "Métodos de Ensino",
-      titleAccent: "Pioneiros",
-      description:
-        "Metodologia de ensino peer-to-peer (p2p) que favorece o aprendizado autônomo e colaborativo.",
+      title: t("features.1.title"),
+      titleAccent: t("features.1.accent"),
+      description: t("features.1.desc"),
     },
     {
-      title: "Conteúdo Prático e",
-      titleAccent: "Técnico",
-      description:
-        "Focamos em conteúdo técnico e atualizado em Web3, preparando você para as demandas desse mercado em crescimento.",
+      title: t("features.2.title"),
+      titleAccent: t("features.2.accent"),
+      description: t("features.2.desc"),
     },
     {
-      title: "Parcerias e Network",
-      titleAccent: "Estratégico",
-      description:
-        "Acesse uma rede de parceiros no mercado Web3 que patrocinam e empoderam desenvolvedores.",
+      title: t("features.3.title"),
+      titleAccent: t("features.3.accent"),
+      description: t("features.3.desc"),
       image: bootcampGroup,
       imageAlt: "Bootcamp group photo",
     },
@@ -89,18 +87,13 @@ const FeaturesSection = () => {
     <section id="features" className="relative z-10 px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Large card left */}
           <div className="lg:col-span-1">
             <FeatureCard {...features[0]} index={0} />
           </div>
-
-          {/* Two smaller cards stacked */}
           <div className="flex flex-col gap-6 lg:col-span-1">
             <FeatureCard {...features[1]} index={1} />
             <FeatureCard {...features[2]} index={2} />
           </div>
-
-          {/* Large card right */}
           <div className="lg:col-span-1">
             <FeatureCard {...features[3]} index={3} />
           </div>

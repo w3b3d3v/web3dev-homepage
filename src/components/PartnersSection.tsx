@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 import ledger from "@/assets/partners/ledger.webp";
 import octopus from "@/assets/partners/octopus.webp";
@@ -32,6 +33,7 @@ const partners = [
 const PartnersSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { t } = useLanguage();
 
   return (
     <section className="relative z-10 px-6 py-24" ref={ref}>
@@ -41,7 +43,7 @@ const PartnersSection = () => {
           animate={isInView ? { opacity: 1 } : {}}
           className="font-heading text-3xl font-bold text-foreground md:text-4xl"
         >
-          <span className="text-primary italic">Parceiros & Clientes</span> Nativos Web3
+          <span className="text-primary italic">{t("partners.title1")}</span> {t("partners.title2")}
         </motion.h2>
 
         <motion.div
@@ -56,7 +58,7 @@ const PartnersSection = () => {
             rel="noopener noreferrer"
             className="text-sm text-primary hover:underline"
           >
-            Saiba Mais →
+            {t("partners.cta")}
           </a>
         </motion.div>
 
