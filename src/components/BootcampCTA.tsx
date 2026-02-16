@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import bootcampClass from "@/assets/bootcamp-class.webp";
 
 const BootcampCTA = () => {
   const ref = useRef(null);
@@ -8,30 +9,63 @@ const BootcampCTA = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 px-6 py-24">
+    <section className="relative z-10 px-6 py-12">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="glow-card mx-auto max-w-4xl overflow-hidden p-12 text-center md:p-16"
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-xl"
         style={{
-          boxShadow: "0 0 60px hsl(145 100% 50% / 0.06), inset 0 1px 0 hsl(145 100% 50% / 0.1)",
+          background: "radial-gradient(ellipse at top left, hsl(145 100% 50% / 0.08) 0%, hsl(220 15% 8% / 0.95) 60%, hsl(220 20% 4%) 100%)",
         }}
       >
-        <h2 className="font-heading text-2xl font-bold text-foreground md:text-4xl">
-          {t("bootcamp.title")}{" "}
-          <span className="text-gradient-green">{t("bootcamp.highlight")}</span>
-        </h2>
-        <div className="mt-8">
-          <a
-            href="https://www.w3d.community/build"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glow-button inline-block"
-          >
-            {t("bootcamp.cta")}
-          </a>
+        {/* Green corner accent */}
+        <div
+          className="absolute top-0 left-0 w-16 h-16 pointer-events-none z-10"
+          style={{
+            borderTop: "2px solid hsl(145 100% 50%)",
+            borderLeft: "2px solid hsl(145 100% 50%)",
+            borderTopLeftRadius: "0.75rem",
+            boxShadow: "-4px -4px 20px hsl(145 100% 50% / 0.4), inset 3px 3px 12px hsl(145 100% 50% / 0.15)",
+          }}
+        />
+        {/* Border glow */}
+        <div
+          className="absolute inset-0 rounded-xl pointer-events-none z-10"
+          style={{
+            boxShadow: "inset 1px 1px 0 0 hsl(145 100% 50% / 0.5), inset 0 0 0 1px hsl(145 100% 50% / 0.08)",
+          }}
+        />
+
+        <div className="grid md:grid-cols-2 items-center">
+          {/* Image */}
+          <div className="h-64 md:h-80 overflow-hidden">
+            <img
+              src={bootcampClass}
+              alt="Build a Blockchain with Rust"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Text */}
+          <div className="p-8 md:p-12">
+            <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl leading-tight">
+              {t("bootcamp.title")}{" "}
+              <span className="text-gradient-green italic">{t("bootcamp.highlight")}</span>
+            </h2>
+            <div className="mt-6">
+              <a
+                href="https://www.w3d.community/build"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glow-button inline-block"
+              >
+                {t("bootcamp.cta")}
+              </a>
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>
