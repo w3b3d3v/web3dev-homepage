@@ -93,7 +93,7 @@ const FeatureCard = ({
         </p>
       </div>
 
-      <div className="aspect-video overflow-hidden relative z-20">
+      <div className="h-56 md:h-64 overflow-hidden relative z-20">
         <img
           src={image}
           alt={imageAlt}
