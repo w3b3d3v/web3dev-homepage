@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import solanaClassroom from "@/assets/solana-classroom.webp";
 import bootcampClass from "@/assets/bootcamp-class.webp";
@@ -6,10 +6,97 @@ import developersTable from "@/assets/developers-table.webp";
 import solanaThumbnail from "@/assets/solana-thumbnail.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const SolanaCaseSection = () => {
+const TimelineItem = ({
+  title,
+  description,
+  image,
+  link,
+  index,
+  viewMoreLabel,
+}: {
+  title: string;
+  description: string;
+  image?: string;
+  link?: string;
+  index: number;
+  viewMoreLabel: string;
+}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-20% 0px -20% 0px" });
+
+  return (
+    <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-center min-h-[220px]">
+      {/* Left: Text */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: -10 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="pr-4 md:pr-8 text-right"
+      >
+        <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
+        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block text-sm text-primary hover:underline"
+          >
+            {viewMoreLabel}
+          </a>
+        )}
+      </motion.div>
+
+      {/* Center: Dot on the line */}
+      <div className="relative flex items-center justify-center w-8">
+        <motion.div
+          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="w-3 h-3 rounded-full border-2 border-primary z-10"
+          style={{
+            background: isInView ? "hsl(145 100% 50%)" : "transparent",
+            boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
+          }}
+        />
+      </div>
+
+      {/* Right: Image */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 10 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="pl-4 md:pl-8"
+      >
+        {image ? (
+          <div className="overflow-hidden rounded-lg border border-border/50">
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-40 md:h-48 object-cover"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div className="w-full h-40 md:h-48 rounded-lg border border-border/30 bg-card/30" />
+        )}
+      </motion.div>
+    </div>
+  );
+};
+
+const SolanaCaseSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"],
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const lineOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
 
   const caseStats = [
     { value: "4.9k", label: t("solana.stat1.label") },
@@ -17,11 +104,12 @@ const SolanaCaseSection = () => {
     { value: "50+", label: t("solana.stat3.label") },
   ];
 
-  const cards = [
+  const timelineItems = [
     {
       title: t("solana.card1.title"),
       description: t("solana.card1.desc"),
       link: "https://pt.w3d.community/search?q=solana",
+      image: solanaClassroom,
     },
     {
       title: t("solana.card2.title"),
@@ -47,18 +135,21 @@ const SolanaCaseSection = () => {
   ];
 
   return (
-    <section className="relative z-10 px-6 py-24" ref={ref}>
-      <div className="mx-auto max-w-7xl">
+    <section ref={sectionRef} className="relative z-10 px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        {/* Header: Title + Stats */}
         <motion.div
+          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="mb-16"
         >
           <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            {t("solana.title")} <span className="text-gradient-green">{t("solana.highlight")}</span>
+            {t("solana.title")}{" "}
+            <span className="text-gradient-green">{t("solana.highlight")}</span>
           </h2>
-
-          <div className="mt-10 flex flex-wrap gap-8">
+          <div className="mt-8 flex flex-wrap gap-8">
             {caseStats.map((stat) => (
               <div key={stat.label}>
                 <div className="font-heading text-2xl font-bold text-primary">{stat.value}</div>
@@ -68,40 +159,29 @@ const SolanaCaseSection = () => {
           </div>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card, i) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              className="glow-card overflow-hidden"
-            >
-              {card.image && (
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              )}
-              <div className="p-6">
-                <h3 className="font-heading text-lg font-semibold text-foreground">{card.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{card.description}</p>
-                {card.link && (
-                  <a
-                    href={card.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-block text-sm text-primary hover:underline"
-                  >
-                    {t("solana.viewMore")}
-                  </a>
-                )}
-              </div>
-            </motion.div>
+        {/* Timeline */}
+        <div className="relative flex flex-col gap-16">
+          {/* Vertical line background (dark) */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border/30" />
+
+          {/* Vertical line glow (animated) */}
+          <motion.div
+            className="absolute left-1/2 top-0 w-px -translate-x-1/2 origin-top"
+            style={{
+              height: lineHeight,
+              opacity: lineOpacity,
+              background: "linear-gradient(to bottom, hsl(145 100% 50% / 0.8), hsl(145 100% 50% / 0.3))",
+              boxShadow: "0 0 8px hsl(145 100% 50% / 0.4)",
+            }}
+          />
+
+          {timelineItems.map((item, i) => (
+            <TimelineItem
+              key={item.title}
+              {...item}
+              index={i}
+              viewMoreLabel={t("solana.viewMore")}
+            />
           ))}
         </div>
       </div>
