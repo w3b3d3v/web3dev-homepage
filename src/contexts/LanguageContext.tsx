@@ -14,9 +14,12 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.about": "Sobre nós",
     "nav.bootcamp": "Bootcamp",
     "nav.resources": "Recursos",
-    "nav.articles": "Artigos",
-    "nav.youtube": "YouTube",
-    "nav.web3nars": "Web3nars",
+    "nav.learn": "Aprenda",
+    "nav.calendar": "Calendário Web3",
+    "nav.articles": "Artigos Web3",
+    "nav.solidityGuide": "Guia Solidity",
+    "nav.glossary": "Glossário Web3",
+    "nav.blockchainStudy": "Estudo Blockchain",
     "nav.lang": "🇧🇷 PT-BR",
 
     // Hero
@@ -112,9 +115,12 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.about": "About us",
     "nav.bootcamp": "Bootcamp",
     "nav.resources": "Resources",
-    "nav.articles": "Articles",
-    "nav.youtube": "YouTube",
-    "nav.web3nars": "Web3nars",
+    "nav.learn": "Learn",
+    "nav.calendar": "Web3 Calendar",
+    "nav.articles": "Web3 Articles",
+    "nav.solidityGuide": "Solidity Guide",
+    "nav.glossary": "Web3 Glossary",
+    "nav.blockchainStudy": "Blockchain Study",
     "nav.lang": "🇺🇸 EN-US",
 
     // Hero
