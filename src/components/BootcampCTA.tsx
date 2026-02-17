@@ -1,4 +1,5 @@
 import { motion, useInView } from "framer-motion";
+import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import bootcampClass from "@/assets/bootcamp-class.webp";
@@ -40,14 +41,9 @@ const BootcampCTA = () => {
             <span className="text-gradient-green italic">{t("bootcamp.highlight")}</span>
           </h2>
           <div className="mt-6">
-            <a
-              href="https://www.w3d.community/build"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shimmer-button"
-            >
-              <span>{t("bootcamp.cta")}</span>
-            </a>
+            <ShimmerButton href="https://www.w3d.community/build" target="_blank" rel="noopener noreferrer">
+              {t("bootcamp.cta")}
+            </ShimmerButton>
           </div>
         </div>
       </motion.div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ShimmerButton from "@/components/ShimmerButton";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -29,14 +30,9 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <a
-            href="https://discord.gg/web3dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shimmer-button"
-          >
-            <span>{t("hero.cta")}</span>
-          </a>
+          <ShimmerButton href="https://discord.gg/web3dev" target="_blank" rel="noopener noreferrer">
+            {t("hero.cta")}
+          </ShimmerButton>
         </motion.div>
       </motion.div>
 

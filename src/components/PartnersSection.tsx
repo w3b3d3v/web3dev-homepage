@@ -1,4 +1,5 @@
 import { motion, useInView } from "framer-motion";
+import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -66,14 +67,9 @@ const PartnersSection = () => {
                 <br />
                 {t("partners.title2")}
               </h2>
-              <a
-                href="https://calendly.com/anna-w3d/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shimmer-button"
-              >
-                <span>{t("partners.cta")}</span>
-              </a>
+              <ShimmerButton href="https://calendly.com/anna-w3d/" target="_blank" rel="noopener noreferrer">
+                {t("partners.cta")}
+              </ShimmerButton>
             </div>
 
             {/* image_wrapper is--partners */}
