@@ -68,7 +68,7 @@
   :root {
     --transition: 0.25s;
     --spark: 2s;
-    --speed: 5s;
+    --speed: 3.5s;
   }
 
   .shimmer-container {
