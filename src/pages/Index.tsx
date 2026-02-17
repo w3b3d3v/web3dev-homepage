@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-background">
+    <div className="page-wrapper relative min-h-screen overflow-x-hidden bg-background">
       <GridBackground />
       <Navbar />
       <main>
