@@ -172,22 +172,20 @@ const SolanaCaseSection = () => {
     <section ref={sectionRef} className="relative z-10 px-6 py-24">
       <div className="mx-auto max-w-5xl">
         {/* Timeline */}
-        <div className="relative flex flex-col gap-16" style={{ overflow: "clip" }}>
+        <div className="relative flex flex-col gap-16">
           {/* timeline_progress-2: gray background track */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 max-[767px]:left-[6px] max-[767px]:translate-x-0"
-            style={{ width: "3px", height: "100%", backgroundColor: "rgb(65, 65, 65)", zIndex: -2 }}
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 max-[767px]:left-[6px] max-[767px]:translate-x-0"
+            style={{ width: "3px", backgroundColor: "rgb(65, 65, 65)", zIndex: -2 }}
           />
 
-          {/* timeline_progress-bar: fixed gradient bar */}
-          <div
-            className="fixed max-[767px]:left-[6px]"
+          {/* timeline_progress-bar: animated gradient that grows with scroll */}
+          <motion.div
+            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top max-[767px]:left-[6px] max-[767px]:translate-x-0"
             style={{
-              top: 0,
-              bottom: "50vh",
-              left: "50%",
               width: "3px",
-              height: "50vh",
+              height: lineHeight,
+              opacity: lineOpacity,
               zIndex: -1,
               backgroundImage: "linear-gradient(180deg, #DC1FFF, #7B61FF 29%, #1E90FF 71%, #00FF66)",
             }}
