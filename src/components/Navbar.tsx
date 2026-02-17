@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import web3devLogo from "@/assets/web3dev-logo.svg";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,12 +33,8 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2">
-          <div className="flex flex-col">
-            <span className="font-heading text-xl font-bold text-foreground tracking-tight">
-              <span className="text-gradient-green">WEB3</span>DEV
-            </span>
-          </div>
+        <a href="/" className="flex items-center gap-2">
+          <img src={web3devLogo} alt="WEB3DEV" className="h-8 md:h-10" />
         </a>
 
         {/* Desktop Nav */}
