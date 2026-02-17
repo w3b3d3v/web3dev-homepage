@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import discordWindow from "@/assets/discord-window.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
@@ -49,7 +48,9 @@ const HeroSection = () => {
       >
         <div className="relative overflow-hidden rounded-xl border border-border/30 shadow-2xl shadow-primary/5">
           <img
-            src={discordWindow}
+            src="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window.webp"
+            srcSet="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-800.webp 800w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-1080.webp 1080w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window.webp 1200w"
+            sizes="(max-width: 1200px) 100vw, 1200px"
             alt="WEB3DEV Discord community showing active study groups and members"
             className="w-full"
             loading="lazy"
