@@ -65,24 +65,104 @@
 }
 
 @layer components {
+  :root {
+    --transition: 0.25s;
+    --spark: 2s;
+  }
+
+  .shimmer-container {
+    position: absolute;
+    inset: 0px;
+    container-type: size;
+    overflow: visible;
+  }
+
+  .shimmer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 0;
+    overflow: visible;
+    mask: none;
+    animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  }
+
+  .shimmer:before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background: conic-gradient(from 225deg, transparent 0, hsl(0 0% 100% / 1) 90deg, transparent 90deg);
+    animation: shimmer-spin calc(var(--speed) * 2) infinite linear;
+  }
+
+  .shimmer:after {
+    content: "";
+    position: absolute;
+    inset: var(--cut);
+    border-radius: 100px;
+  }
+
+  .shimmer-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+
+  .shimmer-backdrop {
+    position: absolute;
+    inset: var(--cut);
+    background: var(--bg);
+    border-radius: 100px;
+    transition: background var(--transition), opacity var(--transition);
+    z-index: 1;
+  }
+
   .shimmer-button {
-    @apply inline-block rounded-full bg-transparent font-heading font-bold transition-all duration-300 will-change-transform;
-    padding: 1px;
-    background-image: radial-gradient(circle farthest-corner at 0% 100%, hsl(210 100% 55%), hsl(145 100% 50%) 54%, hsl(270 80% 60%));
-    transform-style: preserve-3d;
+    --cut: 1px;
+    --bg: hsl(var(--background));
+    background: var(--bg);
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    line-height: 1;
     text-decoration: none;
+    display: inline-grid;
+    place-items: center;
+    white-space: nowrap;
+    border-radius: 100px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    background-image: radial-gradient(circle farthest-corner at 0% 100%, var(--base-blue), var(--radiant-green) 54%, var(--base-purple));
+    transition: transform 0.25s;
   }
 
   .shimmer-button:hover {
     transform: scale(1.05);
   }
 
-  .shimmer-button span {
-    @apply block rounded-full bg-background px-7 py-2.5 text-sm font-bold text-foreground transition-colors duration-300;
+  .shimmer-button.text-xs {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 
-  .shimmer-button:hover span {
-    @apply bg-background/80;
+  @keyframes shimmer-spin {
+    0%          { rotate: 0deg; }
+    15%, 35%    { rotate: 90deg; }
+    65%, 85%    { rotate: 270deg; }
+    100%        { rotate: 360deg; }
+  }
+
+  @keyframes shimmer-slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
   }
 
   .glow-button {

@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import timelineCommunity from "@/assets/timeline-1-community.jpg";
 import timelineHackathon from "@/assets/timeline-2-hackathon.webp";
@@ -62,14 +63,9 @@ const TimelineItem = ({
             <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{description}</p>
              {link && (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shimmer-button mt-3 inline-block text-xs"
-              >
-                <span>{viewMoreLabel}</span>
-              </a>
+              <ShimmerButton href={link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
+                {viewMoreLabel}
+              </ShimmerButton>
             )}
           </>
         )}

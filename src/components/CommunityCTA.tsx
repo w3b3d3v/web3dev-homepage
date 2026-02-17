@@ -1,4 +1,5 @@
 import { motion, useInView } from "framer-motion";
+import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import developersTable from "@/assets/developers-table.webp";
@@ -31,14 +32,9 @@ const CommunityCTA = () => {
             {t("community.title2")}
           </h2>
           <div className="mt-6">
-            <a
-              href="https://discord.gg/web3dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shimmer-button"
-            >
-              <span>{t("community.cta")}</span>
-            </a>
+            <ShimmerButton href="https://discord.gg/web3dev" target="_blank" rel="noopener noreferrer">
+              {t("community.cta")}
+            </ShimmerButton>
           </div>
         </div>
 

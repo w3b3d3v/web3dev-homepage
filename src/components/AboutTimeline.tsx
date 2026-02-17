@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -34,9 +35,9 @@ const TimelineEventItem = ({ event, index }: { event: TimelineEvent; index: numb
           <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
           <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
           {event.link && (
-            <a href={event.link} target="_blank" rel="noopener noreferrer" className="shimmer-button mt-3 inline-block text-xs">
-              <span>Ver mais →</span>
-            </a>
+            <ShimmerButton href={event.link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
+              Ver mais →
+            </ShimmerButton>
           )}
         </div>
       </motion.div>
