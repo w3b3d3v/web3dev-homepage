@@ -1,19 +1,17 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import studyGroup from "@/assets/study-group.webp";
-import img1 from "@/assets/gallery/img1.webp";
-import img2 from "@/assets/gallery/img2.webp";
-import solanaClassroom from "@/assets/solana-classroom.webp";
-import img3 from "@/assets/gallery/img3.webp";
-import img4 from "@/assets/gallery/img4.webp";
-import bootcampClass from "@/assets/bootcamp-class.webp";
-import bootcampGroup from "@/assets/bootcamp-group.webp";
-import developersTable from "@/assets/developers-table.webp";
-import studentDesk from "@/assets/students-desk.webp";
+import row1_1 from "@/assets/gallery/row1-1.webp";
+import row1_2 from "@/assets/gallery/row1-2.webp";
+import row1_3 from "@/assets/gallery/row1-3.webp";
+import row2_1 from "@/assets/gallery/row2-1.webp";
+import row2_2 from "@/assets/gallery/row2-2.webp";
+import row2_3 from "@/assets/gallery/row2-3.avif";
+import row2_4 from "@/assets/gallery/row2-4.webp";
+import row2_5 from "@/assets/gallery/row2-5.avif";
 import web3devLogo from "@/assets/web3dev-logo.gif";
 
-const row1 = [studyGroup, img1, img2, solanaClassroom, img3, img4, studyGroup, img1, img2];
-const row2 = [bootcampClass, bootcampGroup, developersTable, studentDesk, img3, img4, bootcampClass, bootcampGroup, developersTable];
+const row1 = [row1_1, row1_2, row1_3, row2_1, row1_1, row1_2, row1_3, row2_1];
+const row2 = [row2_2, row2_3, row2_4, row2_5, row2_2, row2_3, row2_4, row2_5];
 
 const socialLinks = [
   {
