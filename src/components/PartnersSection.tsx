@@ -38,36 +38,22 @@ const PartnersSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 px-6 py-12" ref={ref}>
+    <section className="relative z-10 px-6 my-32" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-xl"
+        className="relative mx-auto max-w-7xl overflow-hidden flex flex-col md:flex-row items-center justify-between"
         style={{
-          background: `radial-gradient(ellipse at top left, hsl(${PURPLE} / 0.12) 0%, hsl(220 15% 8% / 0.95) 60%, hsl(220 20% 4%) 100%)`,
+          minHeight: "30rem",
+          border: `1px solid hsl(${PURPLE})`,
+          borderRadius: "1.5rem",
+          backgroundColor: "rgba(14, 14, 14, 0.9)",
         }}
       >
-        {/* Purple corner accent */}
-        <div
-          className="absolute top-0 left-0 w-16 h-16 pointer-events-none z-10"
-          style={{
-            borderTop: `2px solid hsl(${PURPLE})`,
-            borderLeft: `2px solid hsl(${PURPLE})`,
-            borderTopLeftRadius: "0.75rem",
-            boxShadow: `-4px -4px 20px hsl(${PURPLE} / 0.4), inset 3px 3px 12px hsl(${PURPLE} / 0.15)`,
-          }}
-        />
-        <div
-          className="absolute inset-0 rounded-xl pointer-events-none z-10"
-          style={{
-            boxShadow: `inset 1px 1px 0 0 hsl(${PURPLE} / 0.5), inset 0 0 0 1px hsl(${PURPLE} / 0.08)`,
-          }}
-        />
-
-        <div className="grid md:grid-cols-[1fr_1.5fr] items-center gap-8 p-8 md:p-12 relative z-20">
+        <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 w-full">
           {/* Left: Title + Button */}
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-6 md:w-2/5 shrink-0">
             <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl leading-tight">
               <span className="italic" style={{ color: `hsl(${PURPLE})` }}>
                 {t("partners.title1")}
@@ -86,7 +72,7 @@ const PartnersSection = () => {
           </div>
 
           {/* Right: Logo Grid */}
-          <div className="grid grid-cols-3 items-center gap-8">
+          <div className="grid grid-cols-3 sm:grid-cols-4 items-center gap-8 md:w-3/5">
             {partners.map((p, i) => (
               <motion.div
                 key={p.name}
