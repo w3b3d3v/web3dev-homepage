@@ -15,7 +15,7 @@ const BootcampCTA = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="relative mx-auto max-w-7xl overflow-hidden flex flex-col md:flex-row items-center justify-between"
+        className="relative mx-auto max-w-[78rem] overflow-hidden flex flex-col md:flex-row items-center justify-between"
         style={{
           minHeight: "30rem",
           border: "1px solid hsl(var(--primary))",
