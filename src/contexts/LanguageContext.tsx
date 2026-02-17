@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-type Language = "pt" | "en";
+type Language = "pt" | "en" | "es";
 
 interface LanguageContextType {
   lang: Language;
@@ -210,6 +210,107 @@ const translations: Record<Language, Record<string, string>> = {
     "about.hero.highlight": "History",
     "about.hero.subtitle": "Learn how our community creates value through",
     "about.hero.subtitleHighlight": "Free Technical Education",
+  },
+  es: {
+    // Navbar
+    "nav.about": "Sobre nosotros",
+    "nav.bootcamp": "Bootcamp",
+    "nav.resources": "Recursos",
+    "nav.learn": "Aprende",
+    "nav.calendar": "Calendario Web3",
+    "nav.articles": "Artículos Web3",
+    "nav.solidityGuide": "Guía Solidity",
+    "nav.glossary": "Glosario Web3",
+    "nav.blockchainStudy": "Estudio Blockchain",
+    "nav.lang": "🇪🇸 ES",
+
+    // Hero
+    "hero.title1": "Nunca más estudies",
+    "hero.title2": "solo",
+    "hero.subtitle": "Únete a nuestra comunidad y domina tecnologías innovadoras a través de",
+    "hero.highlight": "Educación Técnica Gratuita",
+    "hero.cta": "Comenzar Viaje",
+
+    // Features
+    "features.0.title": "Grupos de Estudio en",
+    "features.0.accent": "Comunidad",
+    "features.0.desc": "Nuestros miembros tienen la oportunidad de convertirse en líderes de grupos de estudio, ganando reconocimiento y autoridad.",
+    "features.1.title": "Métodos de Enseñanza",
+    "features.1.accent": "Pioneros",
+    "features.1.desc": "Metodología de enseñanza peer-to-peer (p2p) que favorece el aprendizaje autónomo y colaborativo.",
+    "features.2.title": "Contenido Práctico y",
+    "features.2.accent": "Técnico",
+    "features.2.desc": "Nos enfocamos en contenido técnico y actualizado en Web3, preparándote para las demandas de este mercado en crecimiento.",
+    "features.3.title": "Alianzas y Network",
+    "features.3.accent": "Estratégico",
+    "features.3.desc": "Accede a una red de socios en el mercado Web3 que patrocinan y empoderan desarrolladores.",
+
+    // Stats
+    "stats.discord": "Miembros en Discord",
+    "stats.articles": "Artículos Técnicos",
+    "stats.bootcampReg": "Inscripciones en Bootcamps",
+    "stats.bootcampGrad": "Graduaciones en Bootcamps",
+    "stats.videos": "Videos en YouTube",
+
+    // Bootcamp CTA
+    "bootcamp.title": "Sumérgete en el mundo de Rust y blockchain.",
+    "bootcamp.highlight": "Domina el Polkadot SDK como un PRO",
+    "bootcamp.cta": "Saber Más",
+
+    // Community CTA
+    "community.title": "Únete a la comunidad",
+    "community.highlight": "WEB3DEV",
+    "community.title2": "y sé parte del futuro de la tecnología",
+    "community.cta": "Participar ahora",
+
+    // Solana Case
+    "solana.title": "Caso",
+    "solana.highlight": "Solana",
+    "solana.stat1.label": "Page Views Generadas",
+    "solana.stat2.label": "Devs Impactados",
+    "solana.stat3.label": "Graduados",
+    "solana.card1.title": "Traducción y Educación",
+    "solana.card1.desc": "Artículos técnicos en portugués y español.",
+    "solana.card2.title": "Coproducción del Hackathon Hyperdrive 2023",
+    "solana.card2.desc": "Talleres técnicos y soporte para equipos.",
+    "solana.card3.title": "Bootcamps Especializados",
+    "solana.card3.desc": "Creación de smart contracts, desarrollo de colecciones de NFTs y soluciones de pago.",
+    "solana.card4.title": "Desarrollo de Talentos",
+    "solana.card4.desc": "Red de más de 130 desarrolladores Solana formados.",
+    "solana.card5.title": "Mira la Playlist",
+    "solana.card5.desc": "Serie de videos sobre el ecosistema Solana.",
+    "solana.viewMore": "Ver más →",
+
+    // Partners
+    "partners.title1": "Socios y Clientes",
+    "partners.title2": "Nativos Web3",
+    "partners.cta": "Saber Más →",
+
+    // FAQ
+    "faq.title": "FAQ",
+    "faq.q1": "1. ¿Cómo conectar con el Discord de la Comunidad?",
+    "faq.a1": "Para comenzar a interactuar con el servidor de WEB3DEV necesitas tener una cuenta en Discord. Si aún no tienes una, descarga la aplicación y crea tu cuenta. Si ya estás registrado, solo únete a nuestro servidor. Tendrás acceso inmediato a todos los canales después de completar el onboarding y la verificación.",
+    "faq.q2": "2. ¿Cómo seguir los Grupos de Estudio?",
+    "faq.a2": "Para conocer nuestros Grupos de Estudio, accede al canal \"choose your group\" en el Discord de la comunidad para liberar el acceso al grupo que desees, ver el historial del grupo, participar en las conversaciones y recibir notificaciones sobre los próximos encuentros.",
+    "faq.q3": "3. ¿Hay requisitos para participar en los Grupos de Estudio?",
+    "faq.a3": "Los Grupos de Estudio son 100% abiertos a cualquier miembro de la comunidad. Es importante que cada uno evalúe su propio nivel de conocimiento. Ofrecemos un ambiente inclusivo, con grupos de todos los niveles.",
+    "faq.q4": "4. ¿Cómo hacer nuestros Bootcamps?",
+    "faq.a4": "Accede a la plataforma de aprendizaje build.w3d.community, crea tu cuenta e inscríbete para tener acceso gratuito a los Bootcamps. Las lecciones son asíncronas y puedes completarlas a tu ritmo.",
+    "faq.q5": "5. ¿Cuáles son las ventajas de completar los Bootcamps?",
+    "faq.a5": "Tendrás acceso a un canal exclusivo en Discord con otros desarrolladores y contarás con el soporte de monitores y moderadores. Al terminar, recibes un NFT de certificación y serás reconocido como miembro graduado.",
+    "faq.q6": "6. ¿Qué es Web3nar?",
+    "faq.a6": "Web3nar es nuestra serie de webinars educativos, donde expertos comparten sus conocimientos sobre temas actuales en blockchain.",
+    "faq.q7": "7. ¿Por qué publicar artículos en WEB3DEV?",
+    "faq.a7": "Publicar artículos te ayuda a compartir tu conocimiento y construir tu reputación en el área técnica Web3. Es una excelente manera de documentar tu progreso y especializarte.",
+
+    // Footer
+    "footer.rights": "© 2024 WEB3DEV. Todos los derechos reservados.",
+
+    // About
+    "about.hero.title": "Historia de la",
+    "about.hero.highlight": "Comunidad",
+    "about.hero.subtitle": "Conoce cómo nuestra comunidad crea valor a través de",
+    "about.hero.subtitleHighlight": "Educación Técnica Gratuita",
   },
 };
 
