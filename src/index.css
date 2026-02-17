@@ -203,10 +203,8 @@
 }
 
 @keyframes shimmer-spin {
-  0%          { rotate: 0deg; }
-  15%, 35%    { rotate: 90deg; }
-  65%, 85%    { rotate: 270deg; }
-  100%        { rotate: 360deg; }
+  0%   { rotate: 0deg; }
+  100% { rotate: 360deg; }
 }
 
 /* ── Container ── */
