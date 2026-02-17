@@ -36,7 +36,7 @@ const BootcampCTA = () => {
 
         {/* Text */}
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-          <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl leading-tight">
+          <h2 className="font-heading text-2xl font-normal text-foreground md:text-3xl lg:text-[3rem] leading-tight">
             {t("bootcamp.title")}{" "}
             <span className="text-gradient-green italic">{t("bootcamp.highlight")}</span>
           </h2>

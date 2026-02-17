@@ -148,7 +148,7 @@ const Footer = ({ hideGallery = false }: { hideGallery?: boolean }) => {
                   </a>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="font-body text-base font-normal text-muted-foreground">
                 © WAGBI Consulting LLC
               </p>
             </div>

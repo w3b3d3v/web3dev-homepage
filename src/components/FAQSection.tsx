@@ -51,7 +51,7 @@ const FAQSection = () => {
         <motion.h2
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          className="mb-10 font-heading text-3xl font-bold text-foreground md:text-4xl"
+          className="mb-10 font-heading text-3xl font-normal text-foreground md:text-[3rem]"
         >
           {t("faq.title")}
         </motion.h2>

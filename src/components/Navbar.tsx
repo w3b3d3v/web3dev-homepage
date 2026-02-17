@@ -48,7 +48,7 @@ const Navbar = () => {
               <button
                 key={link.label}
                 onClick={() => navigate(link.href)}
-                className="font-body text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="font-body text-base text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </button>
@@ -56,7 +56,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="font-body text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="font-body text-base text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -64,7 +64,7 @@ const Navbar = () => {
           )}
 
           <div className="relative" onMouseEnter={() => setResourcesOpen(true)} onMouseLeave={() => setResourcesOpen(false)}>
-            <button className="flex items-center gap-1 font-body text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <button className="flex items-center gap-1 font-body text-base text-muted-foreground transition-colors hover:text-foreground">
               {t("nav.resources")}
               <ChevronDown className="h-3 w-3" />
             </button>
@@ -101,7 +101,7 @@ const Navbar = () => {
 
           {/* Language Selector */}
           <div className="relative" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
-            <button className="flex items-center gap-1 font-body text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <button className="flex items-center gap-1 font-body text-base text-muted-foreground transition-colors hover:text-foreground">
               {currentLang.label}
               <ChevronDown className="h-3 w-3" />
             </button>

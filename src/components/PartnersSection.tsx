@@ -60,7 +60,7 @@ const PartnersSection = () => {
           >
             {/* text_wrapper */}
             <div className="flex flex-col justify-start items-start flex-1 gap-6 pr-8 pl-14 max-[767px]:pb-14 max-[767px]:flex-[0_1_auto] max-[479px]:p-6">
-              <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl leading-tight">
+              <h2 className="font-heading text-2xl font-normal text-foreground md:text-3xl lg:text-[3rem] leading-tight">
                 <span className="italic" style={{ color: `hsl(${PURPLE})` }}>
                   {t("partners.title1")}
                 </span>

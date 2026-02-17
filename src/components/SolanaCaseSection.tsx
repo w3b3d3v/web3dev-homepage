@@ -43,7 +43,7 @@ const TimelineItem = ({
       >
         {isHeader ? (
           <>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="font-heading text-3xl md:text-[3rem] font-normal text-foreground">
               {title.split(" ")[0]}{" "}
               <span className="text-gradient-green">{title.split(" ").slice(1).join(" ")}</span>
             </h2>
@@ -60,7 +60,7 @@ const TimelineItem = ({
           </>
         ) : (
           <>
-            <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
+            <h3 className="font-heading text-xl md:text-[2.75rem] font-semibold text-foreground leading-tight">{title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{description}</p>
              {link && (
               <ShimmerButton href={link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
