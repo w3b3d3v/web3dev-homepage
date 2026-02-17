@@ -10,6 +10,7 @@ import PartnersSection from "@/components/PartnersSection";
 import TagsMarquee from "@/components/TagsMarquee";
 import FAQSection from "@/components/FAQSection";
 import FooterGallery from "@/components/FooterGallery";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
         <FAQSection />
       </main>
       <FooterGallery />
+      <Footer />
     </div>
   );
 };
