@@ -68,24 +68,24 @@
   :root {
     --transition: 0.25s;
     --spark: 2s;
+    --speed: 2s;
   }
 
   .shimmer-container {
     position: absolute;
-    inset: 0px;
-    container-type: size;
+    inset: 0;
     overflow: visible;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .shimmer {
     position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
     height: 100%;
-    aspect-ratio: 1;
-    border-radius: 0;
     overflow: visible;
-    mask: none;
     animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
   }
 
@@ -199,8 +199,11 @@
 }
 
 @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
