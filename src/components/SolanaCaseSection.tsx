@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
-import solanaClassroom from "@/assets/solana-classroom.webp";
-import bootcampClass from "@/assets/bootcamp-class.webp";
-import developersTable from "@/assets/developers-table.webp";
-import solanaThumbnail from "@/assets/solana-thumbnail.webp";
+import timelineCommunity from "@/assets/timeline-1-community.jpg";
+import timelineHackathon from "@/assets/timeline-2-hackathon.webp";
+import timelineBootcamp from "@/assets/timeline-3-bootcamp.webp";
+import timelineTalents from "@/assets/timeline-4-talents.webp";
+import timelinePlaylist from "@/assets/timeline-5-playlist.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const TimelineItem = ({
@@ -142,27 +143,27 @@ const SolanaCaseSection = () => {
       title: t("solana.card1.title"),
       description: t("solana.card1.desc"),
       link: "https://pt.w3d.community/search?q=solana",
-      image: solanaClassroom,
+      image: timelineCommunity,
     },
     {
       title: t("solana.card2.title"),
       description: t("solana.card2.desc"),
-      image: solanaClassroom,
+      image: timelineHackathon,
     },
     {
       title: t("solana.card3.title"),
       description: t("solana.card3.desc"),
-      image: bootcampClass,
+      image: timelineBootcamp,
     },
     {
       title: t("solana.card4.title"),
       description: t("solana.card4.desc"),
-      image: developersTable,
+      image: timelineTalents,
     },
     {
       title: t("solana.card5.title"),
       description: t("solana.card5.desc"),
-      image: solanaThumbnail,
+      image: timelinePlaylist,
       link: "https://youtube.com/playlist?list=PLVX4xVoD65UOnAi_8t69_s7Dh4WiTziS2",
     },
   ];
