@@ -87,7 +87,7 @@
     height: 100%;
     aspect-ratio: 1;
     overflow: visible;
-    animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
+    animation: shimmer-slide var(--speed) linear infinite alternate;
   }
 
   .shimmer:before {
