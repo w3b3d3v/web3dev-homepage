@@ -34,9 +34,9 @@ const HeroSection = () => {
             href="https://discord.gg/web3dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="glow-button inline-block text-base"
+            className="shimmer-button"
           >
-            {t("hero.cta")}
+            <span>{t("hero.cta")}</span>
           </a>
         </motion.div>
       </motion.div>

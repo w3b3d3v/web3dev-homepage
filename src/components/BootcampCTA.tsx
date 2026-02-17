@@ -60,9 +60,9 @@ const BootcampCTA = () => {
                 href="https://www.w3d.community/build"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-button inline-block"
+                className="shimmer-button"
               >
-                {t("bootcamp.cta")}
+                <span>{t("bootcamp.cta")}</span>
               </a>
             </div>
           </div>

@@ -60,14 +60,14 @@ const TimelineItem = ({
           <>
             <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{description}</p>
-            {link && (
+             {link && (
               <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-block text-sm text-primary hover:underline"
+                className="shimmer-button mt-3 inline-block text-xs"
               >
-                {viewMoreLabel}
+                <span>{viewMoreLabel}</span>
               </a>
             )}
           </>
@@ -173,12 +173,13 @@ const SolanaCaseSection = () => {
         {/* Timeline */}
         <div className="relative flex flex-col gap-16">
           {/* Vertical line background (dark) */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border/30" />
+          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 bg-[rgb(65,65,65)]" style={{ width: "3px" }} />
 
           {/* Vertical line glow (animated) */}
           <motion.div
-            className="absolute left-1/2 top-0 w-px -translate-x-1/2 origin-top"
+            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top"
             style={{
+              width: "3px",
               height: lineHeight,
               opacity: lineOpacity,
               background: "linear-gradient(to bottom, hsl(145 100% 50% / 0.8), hsl(145 100% 50% / 0.3))",

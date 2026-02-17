@@ -79,13 +79,9 @@ const PartnersSection = () => {
               href="https://calendly.com/anna-w3d/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 rounded-full font-semibold text-sm border transition-all duration-300"
-              style={{
-                borderColor: `hsl(${PURPLE})`,
-                color: `hsl(${PURPLE})`,
-              }}
+              className="shimmer-button"
             >
-              {t("partners.cta")}
+              <span>{t("partners.cta")}</span>
             </a>
           </div>
 
