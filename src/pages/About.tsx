@@ -1,6 +1,7 @@
 import GridBackground from "@/components/GridBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TagsMarquee from "@/components/TagsMarquee";
 import AboutTimeline from "@/components/AboutTimeline";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -86,7 +87,8 @@ const About = () => {
           </div>
         </section>
       </main>
-      <Footer />
+      <TagsMarquee />
+      <Footer hideGallery />
     </div>
   );
 };

@@ -70,7 +70,7 @@ const socialLinks = [
   },
 ];
 
-const Footer = () => {
+const Footer = ({ hideGallery = false }: { hideGallery?: boolean }) => {
   const galleryRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: galleryRef,
@@ -83,6 +83,7 @@ const Footer = () => {
   return (
     <footer className="relative flex overflow-clip min-h-auto gap-4 bg-background flex-col">
       {/* Gallery rows */}
+      {!hideGallery && (
       <div ref={galleryRef} className="overflow-hidden">
         {[row1, row2].map((row, rowIdx) => (
           <motion.div
@@ -108,6 +109,7 @@ const Footer = () => {
           </motion.div>
         ))}
       </div>
+      )}
 
       {/* Footer content */}
       <div className="relative z-10 w-full py-16 max-[479px]:py-0">
