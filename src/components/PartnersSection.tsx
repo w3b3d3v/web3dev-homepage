@@ -39,7 +39,7 @@ const PartnersSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 py-4" ref={ref}>
+    <section className="relative z-10 py-3" ref={ref}>
       {/* padding-global */}
       <div className="px-10 max-[991px]:px-8 max-[767px]:px-6 max-[479px]:mt-8">
         {/* container-large */}
