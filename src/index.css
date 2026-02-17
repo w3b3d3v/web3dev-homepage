@@ -236,6 +236,8 @@
 .community-grid_video {
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Stats */
