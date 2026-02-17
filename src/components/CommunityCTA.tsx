@@ -10,7 +10,7 @@ const CommunityCTA = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 px-6 my-32">
+    <section className="relative z-10 px-6 mt-32 mb-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
