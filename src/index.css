@@ -164,7 +164,7 @@ body {
 
 @keyframes slide-line {
   0%   { background-position: 0px calc(-4 * var(--bg-grid)); }
-  60%  { background-position: 0 calc(4 * var(--bg-grid)); }
+  7%   { background-position: 0 calc(4 * var(--bg-grid)); }
   100% { background-position: 0 calc(4 * var(--bg-grid)); }
 }
 
@@ -174,17 +174,32 @@ body {
   display: block;
   transform: translateX(-52%);
   position: absolute;
-  animation: slide-line 8s ease 4s infinite;
+  animation: slide-line 70s ease infinite;
   background-image: linear-gradient(0deg, transparent, currentColor, currentColor, transparent);
   background-repeat: no-repeat;
-  background-position: 0px calc(-3 * var(--bg-grid));
+  background-position: 0px calc(-4 * var(--bg-grid));
   mask-image: linear-gradient(0deg, transparent, white, white, transparent);
 }
 
-.line:nth-of-type(4n+1) { color: var(--base-green);    animation-delay: 1s; }
-.line:nth-of-type(4n+2) { color: var(--base-blue);     animation-delay: 3s; }
-.line:nth-of-type(4n+3) { color: var(--base-purple);   animation-delay: 5s; }
-.line:nth-of-type(4n+4) { color: var(--radiant-green); animation-delay: 7s; }
+.line:nth-of-type(4n+1) { color: var(--base-green); }
+.line:nth-of-type(4n+2) { color: var(--base-blue); }
+.line:nth-of-type(4n+3) { color: var(--base-purple); }
+.line:nth-of-type(4n+4) { color: var(--radiant-green); }
+
+.line:nth-of-type(1)  { animation-delay: 0s; }
+.line:nth-of-type(2)  { animation-delay: 5s; }
+.line:nth-of-type(3)  { animation-delay: 10s; }
+.line:nth-of-type(4)  { animation-delay: 15s; }
+.line:nth-of-type(5)  { animation-delay: 20s; }
+.line:nth-of-type(6)  { animation-delay: 25s; }
+.line:nth-of-type(7)  { animation-delay: 30s; }
+.line:nth-of-type(8)  { animation-delay: 35s; }
+.line:nth-of-type(9)  { animation-delay: 40s; }
+.line:nth-of-type(10) { animation-delay: 45s; }
+.line:nth-of-type(11) { animation-delay: 50s; }
+.line:nth-of-type(12) { animation-delay: 55s; }
+.line:nth-of-type(13) { animation-delay: 60s; }
+.line:nth-of-type(14) { animation-delay: 65s; }
 
 .line:nth-of-type(1)  { top: calc(1 * var(--bg-grid));  left: calc(15 * var(--bg-grid)); }
 .line:nth-of-type(2)  { top: calc(2 * var(--bg-grid));  left: calc(2 * var(--bg-grid)); }
