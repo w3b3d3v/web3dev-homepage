@@ -65,24 +65,36 @@
 }
 
 @layer components {
+  .shimmer-button {
+    @apply inline-block rounded-full bg-transparent font-heading font-bold transition-all duration-300 will-change-transform;
+    padding: 1px;
+    background-image: radial-gradient(circle farthest-corner at 0% 100%, hsl(210 100% 55%), hsl(145 100% 50%) 54%, hsl(270 80% 60%));
+    transform-style: preserve-3d;
+    text-decoration: none;
+  }
+
+  .shimmer-button:hover {
+    transform: scale(1.05);
+  }
+
+  .shimmer-button span {
+    @apply block rounded-full bg-background px-7 py-2.5 text-sm font-bold text-foreground transition-colors duration-300;
+  }
+
+  .shimmer-button:hover span {
+    @apply bg-background/80;
+  }
+
+  /* Legacy alias */
   .glow-button {
-    @apply relative overflow-hidden rounded-lg border border-primary/30 bg-transparent px-8 py-3 font-heading font-semibold text-primary transition-all duration-300;
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), inset 0 0 20px hsl(var(--primary) / 0.05);
+    @apply inline-block rounded-full bg-transparent font-heading font-bold transition-all duration-300 will-change-transform;
+    padding: 1px;
+    background-image: radial-gradient(circle farthest-corner at 0% 100%, hsl(210 100% 55%), hsl(145 100% 50%) 54%, hsl(270 80% 60%));
+    transform-style: preserve-3d;
   }
 
   .glow-button:hover {
-    @apply bg-primary/10 border-primary/60;
-    box-shadow: 0 0 40px hsl(var(--primary) / 0.3), inset 0 0 30px hsl(var(--primary) / 0.1);
-  }
-
-  .glow-button::before {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), transparent, hsl(var(--primary) / 0.1));
-  }
-
-  .glow-button:hover::before {
-    @apply opacity-100;
+    transform: scale(1.05);
   }
 
   .glow-card {

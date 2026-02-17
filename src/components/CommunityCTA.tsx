@@ -50,9 +50,9 @@ const CommunityCTA = () => {
                 href="https://discord.gg/web3dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-button inline-block"
+                className="shimmer-button"
               >
-                {t("community.cta")}
+                <span>{t("community.cta")}</span>
               </a>
             </div>
           </div>
