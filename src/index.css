@@ -134,8 +134,8 @@
 
 body {
   background-image:
-    linear-gradient(to bottom, transparent 99%, rgba(255,255,255,0.03) 99.1%),
-    linear-gradient(to right, transparent 99%, rgba(255,255,255,0.03) 99.1%);
+    linear-gradient(to bottom, transparent 99%, rgba(255,255,255,0.06) 99.1%),
+    linear-gradient(to right, transparent 99%, rgba(255,255,255,0.06) 99.1%);
   background-size: var(--bg-grid) var(--bg-grid);
   background-position: top center;
 }
