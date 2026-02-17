@@ -172,7 +172,7 @@ const SolanaCaseSection = () => {
     <section ref={sectionRef} className="relative z-10 px-6 py-24">
       <div className="mx-auto max-w-5xl">
         {/* Timeline */}
-        <div className="relative flex flex-col gap-16">
+        <div className="relative flex flex-col gap-16" style={{ overflow: "clip" }}>
           {/* timeline_progress-2: gray background track */}
           <div
             className="absolute left-1/2 -translate-x-1/2 max-[767px]:left-[6px] max-[767px]:translate-x-0"
