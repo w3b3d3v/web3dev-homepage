@@ -46,44 +46,56 @@ const About = () => {
         </section>
 
         {/* Founders */}
-        <section className="px-6 py-16">
-          <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Daniel Cukier",
-                image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6871436eab2a07f357ccb4bd_daniel%20cukier.jpg",
-                bio: "Developer since 1995, in crypto since 2016.",
-                roles: ["Founder of Playax", "CTO of Elo7", "CTO of Pravaler", "PhD in Computer Science"],
-              },
-              {
-                name: "Yan Luiz",
-                image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/687143cd6b733a6ba7e88e8f_yan%20luiz.jpeg",
-                bio: "Developer since 2014, in crypto since 2016.",
-                roles: ["Youtuber", "Solidity and Rust Teacher", "Blockchain Developer", "Web Analytics"],
-              },
-              {
-                name: "Anna Bida",
-                image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a1708fb4a8cb0f02b8e94_Anna%20Bida.avif",
-                bio: "Entrepreneur since 2015.",
-                roles: ["Project Manager", "Community Manager", "Digital Marketing", "Educator"],
-              },
-            ].map((person) => (
-              <div key={person.name} className="glow-card p-6 text-center">
-                <img
-                  src={person.image}
-                  alt={person.name}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  loading="lazy"
-                />
-                <h4 className="font-heading text-lg font-semibold text-foreground">{person.name}</h4>
-                <p className="text-sm text-muted-foreground mt-1">{person.bio}</p>
-                <ul className="mt-3 space-y-1">
-                  {person.roles.map((role) => (
-                    <li key={role} className="text-xs text-muted-foreground">{role}</li>
-                  ))}
-                </ul>
+        <section className="px-10 max-lg:px-8 max-md:px-6 max-[479px]:mt-8">
+          <div className="mx-auto w-full max-w-[78rem]">
+            <div
+              className="relative flex overflow-clip min-h-[30rem] my-32 max-[479px]:my-[3.9rem] max-[479px]:min-h-[34.5rem] justify-between items-center rounded-[1.5rem] border border-primary/30 max-md:flex-col max-md:pt-8 max-[479px]:pt-0"
+              style={{ backgroundColor: "rgba(14, 14, 14, 0.9)" }}
+            >
+              <div className="grid flex-1 self-stretch grid-cols-3 gap-4 max-lg:grid-cols-2 max-lg:gap-8 max-[479px]:grid-cols-1">
+                {[
+                  {
+                    name: "Daniel Cukier",
+                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6871436eab2a07f357ccb4bd_daniel%20cukier.jpg",
+                    bio: "Developer since 1995, in crypto since 2016.",
+                    roles: ["Founder of Playax", "CTO of Elo7", "CTO of Pravaler", "PhD in Computer Science"],
+                  },
+                  {
+                    name: "Yan Luiz",
+                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/687143cd6b733a6ba7e88e8f_yan%20luiz.jpeg",
+                    bio: "Developer since 2014, in crypto since 2016.",
+                    roles: ["Youtuber", "Solidity and Rust Teacher", "Blockchain Developer", "Web Analytics"],
+                  },
+                  {
+                    name: "Anna Bida",
+                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a1708fb4a8cb0f02b8e94_Anna%20Bida.avif",
+                    bio: "Entrepreneur since 2015.",
+                    roles: ["Project Manager", "Community Manager", "Digital Marketing", "Educator"],
+                  },
+                ].map((person) => (
+                  <div key={person.name} className="flex flex-col items-center justify-center gap-8 px-2 max-lg:pb-8 max-[479px]:pb-4 max-[479px]:gap-4">
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      width={119}
+                      className="rounded-full object-cover"
+                      loading="lazy"
+                    />
+                    <h4 className="font-system text-sm font-semibold text-foreground">{person.name}</h4>
+                    <div className="text-sm text-muted-foreground text-center leading-relaxed">
+                      {person.bio}
+                      <br /><br />
+                      {person.roles.map((role, i) => (
+                        <span key={role}>
+                          {role}
+                          {i < person.roles.length - 1 && <br />}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </section>
       </main>
