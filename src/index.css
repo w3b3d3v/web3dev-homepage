@@ -152,19 +152,6 @@
     padding: 0.5rem 1rem;
   }
 
-  @keyframes shimmer-spin {
-    0%          { rotate: 0deg; }
-    15%, 35%    { rotate: 90deg; }
-    65%, 85%    { rotate: 270deg; }
-    100%        { rotate: 360deg; }
-  }
-
-  @keyframes shimmer-slide {
-    to {
-      transform: translate(calc(100cqw - 100%), 0);
-    }
-  }
-
   .glow-button {
     @apply inline-block rounded-full bg-transparent font-heading font-bold transition-all duration-300 will-change-transform;
     padding: 1px;
@@ -200,6 +187,20 @@
   .section-divider {
     @apply w-full h-px;
     background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+  }
+}
+
+/* ── Shimmer button keyframes ── */
+@keyframes shimmer-spin {
+  0%          { rotate: 0deg; }
+  15%, 35%    { rotate: 90deg; }
+  65%, 85%    { rotate: 270deg; }
+  100%        { rotate: 360deg; }
+}
+
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
   }
 }
 
