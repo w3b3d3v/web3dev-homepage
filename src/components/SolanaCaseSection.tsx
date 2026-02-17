@@ -173,18 +173,23 @@ const SolanaCaseSection = () => {
       <div className="mx-auto max-w-5xl">
         {/* Timeline */}
         <div className="relative flex flex-col gap-16">
-          {/* Vertical line background (dark) */}
-          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 bg-[rgb(65,65,65)]" style={{ width: "3px" }} />
+          {/* timeline_progress-2: gray background track */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 max-[767px]:left-[6px] max-[767px]:translate-x-0"
+            style={{ width: "3px", height: "100%", backgroundColor: "rgb(65, 65, 65)", zIndex: -2 }}
+          />
 
-          {/* Vertical line glow (animated) */}
-          <motion.div
-            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top"
+          {/* timeline_progress-bar: fixed gradient bar */}
+          <div
+            className="fixed max-[767px]:left-[6px]"
             style={{
+              top: 0,
+              bottom: "50vh",
+              left: "50%",
               width: "3px",
-              height: lineHeight,
-              opacity: lineOpacity,
-              background: "linear-gradient(to bottom, hsl(145 100% 50% / 0.8), hsl(145 100% 50% / 0.3))",
-              boxShadow: "0 0 8px hsl(145 100% 50% / 0.4)",
+              height: "50vh",
+              zIndex: -1,
+              backgroundImage: "linear-gradient(180deg, #DC1FFF, #7B61FF 29%, #1E90FF 71%, #00FF66)",
             }}
           />
 
