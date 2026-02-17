@@ -7,6 +7,7 @@ import BootcampCTA from "@/components/BootcampCTA";
 import CommunityCTA from "@/components/CommunityCTA";
 import SolanaCaseSection from "@/components/SolanaCaseSection";
 import PartnersSection from "@/components/PartnersSection";
+import TagsMarquee from "@/components/TagsMarquee";
 import FAQSection from "@/components/FAQSection";
 import FooterGallery from "@/components/FooterGallery";
 
@@ -23,6 +24,7 @@ const Index = () => {
         <CommunityCTA />
         <SolanaCaseSection />
         <PartnersSection />
+        <TagsMarquee />
         <FAQSection />
       </main>
       <FooterGallery />
