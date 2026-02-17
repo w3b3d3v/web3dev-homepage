@@ -31,13 +31,13 @@ const TimelineItem = ({
   const isInView = useInView(ref, { once: false, margin: "-20% 0px -20% 0px" });
 
   return (
-    <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-center min-h-[220px]">
+    <div ref={ref} className="relative z-[2] grid items-center py-20 gap-0 grid-cols-[48px_1fr] sm:grid-cols-[64px_1fr] lg:grid-cols-[1fr_180px_1fr]">
       {/* Left: Text */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: -10 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="pr-4 md:pr-8 text-right"
+        className="pr-4 lg:pr-8 text-left lg:text-right order-2 lg:order-none col-span-1"
       >
         {isHeader ? (
           <>
@@ -75,7 +75,7 @@ const TimelineItem = ({
       </motion.div>
 
       {/* Center: Dot on the line */}
-      <div className="relative flex items-center justify-center w-8">
+      <div className="relative flex items-center justify-center w-[48px] sm:w-[64px] lg:w-[180px] order-1 lg:order-none">
         <motion.div
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
           transition={{ duration: 0.4 }}
@@ -92,7 +92,7 @@ const TimelineItem = ({
         initial={{ opacity: 0, x: 30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 10 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="pl-4 md:pl-8"
+        className="pl-0 lg:pl-8 order-3 lg:order-none col-span-2 lg:col-span-1 mt-4 lg:mt-0"
       >
         {isHeader ? (
           <div />
@@ -171,13 +171,13 @@ const SolanaCaseSection = () => {
     <section ref={sectionRef} className="relative z-10 px-6 py-24">
       <div className="mx-auto max-w-5xl">
         {/* Timeline */}
-        <div className="relative flex flex-col gap-16">
+        <div className="relative flex flex-col">
           {/* Vertical line background (dark) */}
-          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 bg-[rgb(65,65,65)]" style={{ width: "3px" }} />
+          <div className="absolute top-0 bottom-0 left-[6px] sm:left-[24px] lg:left-1/2 lg:-translate-x-1/2 bg-[rgb(65,65,65)]" style={{ width: "3px" }} />
 
           {/* Vertical line glow (animated) */}
           <motion.div
-            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top"
+            className="absolute top-0 left-[6px] sm:left-[24px] lg:left-1/2 lg:-translate-x-1/2 origin-top"
             style={{
               width: "3px",
               height: lineHeight,
