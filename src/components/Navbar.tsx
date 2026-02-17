@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -8,9 +9,10 @@ const Navbar = () => {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const { lang, setLang, t } = useLanguage();
+  const navigate = useNavigate();
 
   const navLinks = [
-    { label: t("nav.about"), href: "#features" },
+    { label: t("nav.about"), href: "/about", isRoute: true },
     { label: t("nav.bootcamp"), href: "https://build.w3d.community/courses" },
   ];
 
@@ -40,15 +42,25 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="font-body text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <button
+                key={link.label}
+                onClick={() => navigate(link.href)}
+                className="font-body text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </button>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-body text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            )
+          )}
 
           <div className="relative" onMouseEnter={() => setResourcesOpen(true)} onMouseLeave={() => setResourcesOpen(false)}>
             <button className="flex items-center gap-1 font-body text-sm text-muted-foreground transition-colors hover:text-foreground">
@@ -129,16 +141,26 @@ const Navbar = () => {
             className="overflow-hidden border-t border-border/30 bg-background/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="font-body text-muted-foreground hover:text-foreground"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.isRoute ? (
+                  <button
+                    key={link.label}
+                    onClick={() => { navigate(link.href); setMobileOpen(false); }}
+                    className="font-body text-muted-foreground hover:text-foreground text-left"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="font-body text-muted-foreground hover:text-foreground"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
               {resources.map((r) => (
                 <a
                   key={r.label}

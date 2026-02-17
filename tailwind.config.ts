@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['"Hanken Grotesk"', 'sans-serif'],
+        body: ['"Hanken Grotesk"', 'sans-serif'],
+        system: ['system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -100,6 +100,12 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     "footer.rights": "© 2024 WEB3DEV. Todos os direitos reservados.",
+
+    // About
+    "about.hero.title": "História da",
+    "about.hero.highlight": "Comunidade",
+    "about.hero.subtitle": "Saiba como nossa comunidade cria valor através de",
+    "about.hero.subtitleHighlight": "Educação Técnica Gratuita",
   },
   en: {
     // Navbar
@@ -192,6 +198,12 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     "footer.rights": "© 2024 WEB3DEV. All rights reserved.",
+
+    // About
+    "about.hero.title": "Community",
+    "about.hero.highlight": "History",
+    "about.hero.subtitle": "Learn how our community creates value through",
+    "about.hero.subtitleHighlight": "Free Technical Education",
   },
 };
 
