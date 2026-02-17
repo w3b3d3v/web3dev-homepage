@@ -22,25 +22,23 @@ const TimelineEventItem = ({ event, index }: { event: TimelineEvent; index: numb
 
   return (
     <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-start min-h-[180px]">
-      {/* Left: empty on even, content on odd */}
+      {/* Left: text always */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }}
         transition={{ duration: 0.5 }}
         className="pr-4 md:pr-8 text-right"
       >
-        {index % 2 === 0 ? (
-          <div className="flex flex-col items-end">
-            <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
-            <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
-            {event.link && (
-              <a href={event.link} target="_blank" rel="noopener noreferrer" className="shimmer-button mt-3 inline-block text-xs">
-                <span>Ver mais →</span>
-              </a>
-            )}
-          </div>
-        ) : null}
+        <div className="flex flex-col items-end">
+          <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
+          <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
+          {event.link && (
+            <a href={event.link} target="_blank" rel="noopener noreferrer" className="shimmer-button mt-3 inline-block text-xs">
+              <span>Ver mais →</span>
+            </a>
+          )}
+        </div>
       </motion.div>
 
       {/* Center: dot */}
@@ -56,59 +54,29 @@ const TimelineEventItem = ({ event, index }: { event: TimelineEvent; index: numb
         />
       </div>
 
-      {/* Right: content on even, media on odd */}
+      {/* Right: media always */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 10 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         className="pl-4 md:pl-8"
       >
-        {index % 2 === 0 ? (
-          event.image ? (
-            <div className="overflow-hidden rounded-lg border border-border/50">
-              <img src={event.image} alt={event.title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
-            </div>
-          ) : event.videoId ? (
-            <div className="overflow-hidden rounded-lg border border-border/50 aspect-video">
-              <iframe
-                src={`https://www.youtube.com/embed/${event.videoId}`}
-                title={event.title}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
-            </div>
-          ) : null
-        ) : (
-          <div className="flex flex-col">
-            <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
-            <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
-            {event.image && (
-              <div className="mt-3 overflow-hidden rounded-lg border border-border/50">
-                <img src={event.image} alt={event.title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
-              </div>
-            )}
-            {event.videoId && !event.image && (
-              <div className="mt-3 overflow-hidden rounded-lg border border-border/50 aspect-video">
-                <iframe
-                  src={`https://www.youtube.com/embed/${event.videoId}`}
-                  title={event.title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </div>
-            )}
-            {event.link && (
-              <a href={event.link} target="_blank" rel="noopener noreferrer" className="shimmer-button mt-3 inline-block text-xs">
-                <span>Ver mais →</span>
-              </a>
-            )}
+        {event.image ? (
+          <div className="overflow-hidden rounded-lg border border-border/50">
+            <img src={event.image} alt={event.title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
           </div>
-        )}
+        ) : event.videoId ? (
+          <div className="overflow-hidden rounded-lg border border-border/50 aspect-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${event.videoId}`}
+              title={event.title}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        ) : null}
       </motion.div>
     </div>
   );
