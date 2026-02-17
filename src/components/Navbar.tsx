@@ -23,6 +23,7 @@ const Navbar = () => {
     { label: t("nav.solidityGuide"), href: "https://solidity.w3d.community/", icon: BookOpen },
     { label: t("nav.glossary"), href: "https://pt.glossario.w3d.community/", icon: BookMarked },
     { label: t("nav.blockchainStudy"), href: "https://roadmap.sh/r/blockchain-br", icon: Compass },
+    { label: "Newsletter", href: "https://en.w3d.community/", icon: FileText },
   ];
 
   const langOptions = [
