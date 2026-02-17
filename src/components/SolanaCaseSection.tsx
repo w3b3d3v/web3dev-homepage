@@ -165,7 +165,7 @@ const SolanaCaseSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative z-10 px-6 py-24">
+    <section ref={sectionRef} className="relative z-10 px-6 pt-24 pb-8">
       <div className="mx-auto max-w-5xl">
         {/* Timeline */}
         <div className="relative flex flex-col gap-16">
