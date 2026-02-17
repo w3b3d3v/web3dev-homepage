@@ -30,57 +30,85 @@ const partners = [
   { name: "Polkadot", logo: polkadot },
 ];
 
+const PURPLE = "270 80% 60%";
+
 const PartnersSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 px-6 py-24" ref={ref}>
-      <div className="mx-auto max-w-7xl text-center">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          className="font-heading text-3xl font-bold text-foreground md:text-4xl"
-        >
-          <span className="text-primary italic">{t("partners.title1")}</span> {t("partners.title2")}
-        </motion.h2>
+    <section className="relative z-10 px-6 py-12" ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-xl"
+        style={{
+          background: `radial-gradient(ellipse at top left, hsl(${PURPLE} / 0.12) 0%, hsl(220 15% 8% / 0.95) 60%, hsl(220 20% 4%) 100%)`,
+        }}
+      >
+        {/* Purple corner accent */}
+        <div
+          className="absolute top-0 left-0 w-16 h-16 pointer-events-none z-10"
+          style={{
+            borderTop: `2px solid hsl(${PURPLE})`,
+            borderLeft: `2px solid hsl(${PURPLE})`,
+            borderTopLeftRadius: "0.75rem",
+            boxShadow: `-4px -4px 20px hsl(${PURPLE} / 0.4), inset 3px 3px 12px hsl(${PURPLE} / 0.15)`,
+          }}
+        />
+        {/* Border glow */}
+        <div
+          className="absolute inset-0 rounded-xl pointer-events-none z-10"
+          style={{
+            boxShadow: `inset 1px 1px 0 0 hsl(${PURPLE} / 0.5), inset 0 0 0 1px hsl(${PURPLE} / 0.08)`,
+          }}
+        />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
-          className="mt-4"
-        >
-          <a
-            href="https://calendly.com/anna-w3d/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary hover:underline"
-          >
-            {t("partners.cta")}
-          </a>
-        </motion.div>
-
-        <div className="mt-14 grid grid-cols-3 items-center gap-8 sm:grid-cols-4 md:grid-cols-6">
-          {partners.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.1 + i * 0.05 }}
-              className="flex items-center justify-center grayscale opacity-60 transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+        <div className="p-8 md:p-12 relative z-20">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
+            <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl">
+              <span className="italic" style={{ color: `hsl(${PURPLE})` }}>
+                {t("partners.title1")}
+              </span>{" "}
+              {t("partners.title2")}
+            </h2>
+            <a
+              href="https://calendly.com/anna-w3d/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 whitespace-nowrap"
+              style={{
+                background: `linear-gradient(135deg, hsl(${PURPLE}), hsl(${PURPLE} / 0.7))`,
+                color: "white",
+                boxShadow: `0 0 20px hsl(${PURPLE} / 0.4)`,
+              }}
             >
-              <img
-                src={p.logo}
-                alt={`${p.name} logo`}
-                className="h-10 w-auto max-w-[100px] object-contain md:h-12"
-                loading="lazy"
-              />
-            </motion.div>
-          ))}
+              {t("partners.cta")}
+            </a>
+          </div>
+
+          <div className="grid grid-cols-3 items-center gap-8 sm:grid-cols-4 md:grid-cols-6">
+            {partners.map((p, i) => (
+              <motion.div
+                key={p.name}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.1 + i * 0.05 }}
+                className="flex items-center justify-center grayscale opacity-60 transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+              >
+                <img
+                  src={p.logo}
+                  alt={`${p.name} logo`}
+                  className="h-10 w-auto max-w-[100px] object-contain md:h-12"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

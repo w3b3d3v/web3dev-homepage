@@ -13,6 +13,9 @@ const TimelineItem = ({
   link,
   index,
   viewMoreLabel,
+  isHeader,
+  caseStats,
+  t,
 }: {
   title: string;
   description: string;
@@ -20,6 +23,9 @@ const TimelineItem = ({
   link?: string;
   index: number;
   viewMoreLabel: string;
+  isHeader?: boolean;
+  caseStats?: Array<{ value: string; label: string }>;
+  t?: (key: string) => string;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-20% 0px -20% 0px" });
@@ -33,17 +39,38 @@ const TimelineItem = ({
         transition={{ duration: 0.5, delay: 0.1 }}
         className="pr-4 md:pr-8 text-right"
       >
-        <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
-        {link && (
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-block text-sm text-primary hover:underline"
-          >
-            {viewMoreLabel}
-          </a>
+        {isHeader ? (
+          <>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+              {title.split(" ")[0]}{" "}
+              <span className="text-gradient-green">{title.split(" ").slice(1).join(" ")}</span>
+            </h2>
+            {caseStats && (
+              <div className="mt-4 flex flex-wrap justify-end gap-6">
+                {caseStats.map((stat) => (
+                  <div key={stat.label} className="text-right">
+                    <div className="font-heading text-xl font-bold text-primary">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground">{title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm text-primary hover:underline"
+              >
+                {viewMoreLabel}
+              </a>
+            )}
+          </>
         )}
       </motion.div>
 
@@ -52,7 +79,7 @@ const TimelineItem = ({
         <motion.div
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
           transition={{ duration: 0.4 }}
-          className="w-3 h-3 rounded-full border-2 border-primary z-10"
+          className={`rounded-full border-2 border-primary z-10 ${isHeader ? "w-4 h-4" : "w-3 h-3"}`}
           style={{
             background: isInView ? "hsl(145 100% 50%)" : "transparent",
             boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
@@ -60,14 +87,16 @@ const TimelineItem = ({
         />
       </div>
 
-      {/* Right: Image */}
+      {/* Right: Image or empty for header */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 10 }}
         transition={{ duration: 0.5, delay: 0.15 }}
         className="pl-4 md:pl-8"
       >
-        {image ? (
+        {isHeader ? (
+          <div />
+        ) : image ? (
           <div className="overflow-hidden rounded-lg border border-border/50">
             <img
               src={image}
@@ -87,8 +116,6 @@ const TimelineItem = ({
 const SolanaCaseSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -105,6 +132,12 @@ const SolanaCaseSection = () => {
   ];
 
   const timelineItems = [
+    {
+      title: t("solana.title") + " " + t("solana.highlight"),
+      description: "",
+      image: undefined,
+      isHeader: true,
+    },
     {
       title: t("solana.card1.title"),
       description: t("solana.card1.desc"),
@@ -137,28 +170,6 @@ const SolanaCaseSection = () => {
   return (
     <section ref={sectionRef} className="relative z-10 px-6 py-24">
       <div className="mx-auto max-w-5xl">
-        {/* Header: Title + Stats */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            {t("solana.title")}{" "}
-            <span className="text-gradient-green">{t("solana.highlight")}</span>
-          </h2>
-          <div className="mt-8 flex flex-wrap gap-8">
-            {caseStats.map((stat) => (
-              <div key={stat.label}>
-                <div className="font-heading text-2xl font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Timeline */}
         <div className="relative flex flex-col gap-16">
           {/* Vertical line background (dark) */}
@@ -177,10 +188,12 @@ const SolanaCaseSection = () => {
 
           {timelineItems.map((item, i) => (
             <TimelineItem
-              key={item.title}
+              key={i}
               {...item}
               index={i}
               viewMoreLabel={t("solana.viewMore")}
+              caseStats={item.isHeader ? caseStats : undefined}
+              t={t}
             />
           ))}
         </div>
