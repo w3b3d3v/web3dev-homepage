@@ -1,40 +1,86 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import studyGroup from "@/assets/study-group.webp";
-import bootcampGroup from "@/assets/bootcamp-group.webp";
-import discordWindow from "@/assets/discord-window.webp";
-import bootcampClass from "@/assets/bootcamp-class.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type AccentColor = "green" | "purple" | "blue";
-
-const accentColors: Record<AccentColor, string> = {
-  green: "145 100% 50%",
-  purple: "270 80% 60%",
-  blue: "210 100% 55%",
+type CardConfig = {
+  titleKey: string;
+  accentKey: string;
+  descKey: string;
+  borderClass: string;
+  glowClass: string;
+  accentColor: string;
+  media:
+    | { type: "image"; src: string; srcSet: string; alt: string }
+    | { type: "video"; poster: string; mp4: string; webm: string };
 };
 
-const FeatureCard = ({
-  title,
-  titleAccent,
-  description,
-  image,
-  imageAlt,
-  index,
-  accent = "green",
-}: {
-  title: string;
-  titleAccent: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  index: number;
-  accent?: AccentColor;
-}) => {
+const cards: CardConfig[] = [
+  {
+    titleKey: "features.0.title",
+    accentKey: "features.0.accent",
+    descKey: "features.0.desc",
+    borderClass: "is-green",
+    glowClass: "is-green",
+    accentColor: "var(--base-green)",
+    media: {
+      type: "image",
+      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570.webp",
+      srcSet:
+        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570.webp 579w",
+      alt: "Developer studying at computer",
+    },
+  },
+  {
+    titleKey: "features.1.title",
+    accentKey: "features.1.accent",
+    descKey: "features.1.desc",
+    borderClass: "is-purple",
+    glowClass: "is-purple",
+    accentColor: "var(--base-purple)",
+    media: {
+      type: "video",
+      poster:
+        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-poster-00001.jpg",
+      mp4: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-transcode.mp4",
+      webm: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-transcode.webm",
+    },
+  },
+  {
+    titleKey: "features.2.title",
+    accentKey: "features.2.accent",
+    descKey: "features.2.desc",
+    borderClass: "is-radiant-green",
+    glowClass: "is-radiant-green",
+    accentColor: "var(--radiant-green)",
+    media: {
+      type: "image",
+      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342.webp",
+      srcSet:
+        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342.webp 579w",
+      alt: "Group of students at computers",
+    },
+  },
+  {
+    titleKey: "features.3.title",
+    accentKey: "features.3.accent",
+    descKey: "features.3.desc",
+    borderClass: "is-blue",
+    glowClass: "is-blue",
+    accentColor: "var(--base-blue)",
+    media: {
+      type: "image",
+      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606.webp",
+      srcSet:
+        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606.webp 579w",
+      alt: "Bootcamp group photo",
+    },
+  },
+];
+
+const CommunityCard = ({ config, index }: { config: CardConfig; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const color = accentColors[accent];
+  const { t } = useLanguage();
 
   return (
     <motion.div
@@ -42,121 +88,61 @@ const FeatureCard = ({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="relative overflow-hidden rounded-xl"
-      style={{
-        background: `radial-gradient(ellipse at top left, hsl(${color} / 0.12) 0%, hsl(220 15% 8% / 0.95) 60%, hsl(220 20% 4%) 100%)`,
-      }}
+      className={`community-grid-item ${config.borderClass}`}
     >
-      {/* Gradient border overlay */}
-      <div
-        className="absolute inset-0 rounded-xl pointer-events-none z-10"
-        style={{
-          border: '1.5px solid transparent',
-          borderImage: `linear-gradient(135deg, hsl(${color} / 0.8) 0%, hsl(${color} / 0.3) 30%, transparent 60%) 1`,
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-        }}
-      />
-      {/* Simpler gradient border using pseudo-approach with box-shadow */}
-      <div
-        className="absolute inset-0 rounded-xl pointer-events-none z-10"
-        style={{
-          boxShadow: `inset 1px 1px 0 0 hsl(${color} / 0.6), inset 0 0 0 1px hsl(${color} / 0.1)`,
-          borderRadius: 'inherit',
-        }}
-      />
+      <div className="community-grid_wrapper">
+        <div className="community-grid_text-wrapper">
+          <div className={`community-card_bg-effect ${config.glowClass}`} />
+          <h2 className="community-heading">
+            {t(config.titleKey)}{" "}
+            <span className="community-heading_accent" style={{ color: config.accentColor }}>
+              <em>{t(config.accentKey)}</em>
+            </span>
+          </h2>
+          <div className="community-description">{t(config.descKey)}</div>
+        </div>
 
-      {/* Top-left corner glow accent */}
-      <div
-        className="absolute top-0 left-0 w-16 h-16 pointer-events-none z-10"
-        style={{
-          borderTop: `2px solid hsl(${color})`,
-          borderLeft: `2px solid hsl(${color})`,
-          borderTopLeftRadius: '0.75rem',
-          boxShadow: `-4px -4px 20px hsl(${color} / 0.4), inset 3px 3px 12px hsl(${color} / 0.15)`,
-        }}
-      />
-
-      <div className="p-6 md:p-8 relative z-20">
-        <h3 className="font-heading text-2xl font-semibold text-foreground md:text-3xl">
-          {title}{" "}
-          <span
-            className="italic"
-            style={{ color: `hsl(${color})` }}
+        {config.media.type === "image" ? (
+          <img
+            src={config.media.src}
+            srcSet={config.media.srcSet}
+            sizes="(max-width: 579px) 100vw, 579px"
+            alt={config.media.alt}
+            className="community-grid_image"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="community-grid_image community-grid_video"
+            style={{ backgroundImage: `url("${config.media.poster}")` }}
           >
-            {titleAccent}
-          </span>
-        </h3>
-        <p className="mt-3 font-body text-sm text-muted-foreground leading-relaxed md:text-base">
-          {description}
-        </p>
-      </div>
-
-      <div className="h-56 md:h-64 overflow-hidden relative z-20">
-        <img
-          src={image}
-          alt={imageAlt}
-          className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-          loading="lazy"
-        />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            >
+              <source src={config.media.mp4} type="video/mp4" />
+              <source src={config.media.webm} type="video/webm" />
+            </video>
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
 
 const FeaturesSection = () => {
-  const { t } = useLanguage();
-
-  const features: Array<{
-    title: string;
-    titleAccent: string;
-    description: string;
-    image: string;
-    imageAlt: string;
-    accent: AccentColor;
-  }> = [
-    {
-      title: t("features.0.title"),
-      titleAccent: t("features.0.accent"),
-      description: t("features.0.desc"),
-      image: studyGroup,
-      imageAlt: "Developer studying at computer with community",
-      accent: "green",
-    },
-    {
-      title: t("features.1.title"),
-      titleAccent: t("features.1.accent"),
-      description: t("features.1.desc"),
-      image: bootcampClass,
-      imageAlt: "Bootcamp classroom teaching session",
-      accent: "purple",
-    },
-    {
-      title: t("features.2.title"),
-      titleAccent: t("features.2.accent"),
-      description: t("features.2.desc"),
-      image: discordWindow,
-      imageAlt: "Discord community and streaming session",
-      accent: "green",
-    },
-    {
-      title: t("features.3.title"),
-      titleAccent: t("features.3.accent"),
-      description: t("features.3.desc"),
-      image: bootcampGroup,
-      imageAlt: "Bootcamp group photo",
-      accent: "blue",
-    },
-  ];
-
   return (
-    <section id="features" className="relative z-10 px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 md:grid-cols-2">
-          {features.map((feature, i) => (
-            <FeatureCard key={i} {...feature} index={i} />
-          ))}
+    <section id="features" className="relative z-10">
+      <div className="container-large">
+        <div className="community-wrapper">
+          <div className="community-grid">
+            {cards.map((card, i) => (
+              <CommunityCard key={i} config={card} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
