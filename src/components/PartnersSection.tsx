@@ -53,7 +53,7 @@ const PartnersSection = () => {
       >
         <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 w-full">
           {/* Left: Title + Button */}
-          <div className="flex flex-col items-start gap-6 md:w-2/5 shrink-0">
+          <div className="flex flex-col items-start gap-6 md:w-2/5 shrink-0 pr-8 pl-14 max-[767px]:pb-14 max-[767px]:flex-auto max-[479px]:p-6">
             <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl lg:text-4xl leading-tight">
               <span className="italic" style={{ color: `hsl(${PURPLE})` }}>
                 {t("partners.title1")}
