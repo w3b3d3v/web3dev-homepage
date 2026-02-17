@@ -168,7 +168,6 @@ const AboutTimeline = () => {
           title: "Captação do Primeiro Grant na NEAR",
           description: "Dentre os muitos grants que realizamos inauguramos com a NEAR, focando em criação e tradução de conteúdo de qualidade e técnico para devs.",
           videoId: "Yt6wovZLgf4",
-          link: "https://pt.w3d.community/lorenzobattistela/near-por-tras-dos-panos-2n4g",
         },
         {
           month: "Abril",
