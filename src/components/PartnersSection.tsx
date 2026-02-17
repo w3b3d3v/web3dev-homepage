@@ -38,7 +38,7 @@ const PartnersSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative z-10 px-6 my-32" ref={ref}>
+    <section className="relative z-10 my-32 px-10 max-[991px]:px-8 max-[767px]:px-6 max-[479px]:mt-8" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
