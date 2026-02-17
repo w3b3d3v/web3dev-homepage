@@ -29,6 +29,7 @@ const Navbar = () => {
   const langOptions = [
     { code: "pt" as const, label: "🇧🇷 PT-BR" },
     { code: "en" as const, label: "🇺🇸 EN-US" },
+    { code: "es" as const, label: "🇪🇸 ES" },
   ];
 
   const currentLang = langOptions.find((l) => l.code === lang)!;
