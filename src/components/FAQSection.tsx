@@ -15,7 +15,7 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
     >
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-5 text-left font-heading text-sm font-medium text-foreground transition-colors hover:text-primary md:text-base"
+        className="flex w-full items-center justify-between py-5 text-left font-heading text-sm font-semibold text-foreground transition-colors hover:text-primary md:text-base"
       >
         {question}
         <ChevronDown
@@ -51,7 +51,7 @@ const FAQSection = () => {
         <motion.h2
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          className="mb-10 font-heading text-3xl font-normal text-foreground md:text-[3rem]"
+          className="mb-10 font-heading text-3xl font-black text-foreground md:text-[3rem]"
         >
           {t("faq.title")}
         </motion.h2>
