@@ -39,7 +39,7 @@ const TimelineItem = ({
         initial={{ opacity: 0, x: -30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: -10 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="pr-4 md:pr-8 text-right"
+        className="pr-4 md:pr-8 text-right max-[767px]:col-span-3 max-[767px]:pl-8"
       >
         {isHeader ? (
           <>
@@ -71,8 +71,8 @@ const TimelineItem = ({
         )}
       </motion.div>
 
-      {/* Center: Dot on the line */}
-      <div className="relative flex items-center justify-center w-8">
+      {/* Center: Dot — desktop only */}
+      <div className="relative flex items-center justify-center w-8 max-[767px]:hidden">
         <motion.div
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
           transition={{ duration: 0.4 }}
@@ -84,15 +84,26 @@ const TimelineItem = ({
         />
       </div>
 
+      {/* Mobile dot — pinned to left track */}
+      <motion.div
+        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+        transition={{ duration: 0.4 }}
+        className={`hidden max-[767px]:block absolute left-[6px] top-4 -translate-x-1/2 rounded-full border-2 border-primary z-10 ${isHeader ? "w-4 h-4" : "w-3 h-3"}`}
+        style={{
+          background: isInView ? "hsl(145 100% 50%)" : "transparent",
+          boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
+        }}
+      />
+
       {/* Right: Image or empty for header */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 10 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="pl-4 md:pl-8"
+        className="pl-4 md:pl-8 max-[767px]:col-span-3 max-[767px]:pl-8"
       >
         {isHeader ? (
-          <div />
+          <div className="max-[767px]:hidden" />
         ) : image ? (
           <div className="overflow-hidden rounded-lg border border-border/50">
             <img
@@ -103,7 +114,7 @@ const TimelineItem = ({
             />
           </div>
         ) : (
-          <div className="w-full h-40 md:h-48 rounded-lg border border-border/30 bg-card/30" />
+          <div className="w-full h-40 md:h-48 rounded-lg border border-border/30 bg-card/30 max-[767px]:hidden" />
         )}
       </motion.div>
     </div>
