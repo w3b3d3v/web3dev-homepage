@@ -28,80 +28,107 @@ interface TimelineYear {
   events: TimelineEvent[];
 }
 
+// Dot shared style helper
+const dotStyle = (isInView: boolean, size: "sm" | "lg" = "sm") => ({
+  background: isInView ? "hsl(145 100% 50%)" : "transparent",
+  boxShadow: isInView ? `0 0 ${size === "lg" ? "16" : "12"}px hsl(145 100% 50% / 0.6)` : "none",
+});
+
 const TimelineEventItem = ({ event }: { event: TimelineEvent }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-15% 0px -15% 0px" });
   const { t } = useLanguage();
 
-  return (
-    <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-start min-h-[180px]">
-      {/* Left: text always */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }}
-        transition={{ duration: 0.5 }}
-        className="pr-4 md:pr-8 text-right max-[767px]:col-span-3 max-[767px]:pl-8"
-      >
-        <div className="flex flex-col items-end">
-          <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
-          <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
-          {event.link && (
-            <ShimmerButton href={event.link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
-              {t("timeline.viewMore")}
-            </ShimmerButton>
-          )}
-        </div>
-      </motion.div>
+  const media = event.image ? (
+    <div className="overflow-hidden rounded-lg border border-border/50">
+      <img src={event.image} alt={event.title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
+    </div>
+  ) : event.videoId ? (
+    <div className="overflow-hidden rounded-lg border border-border/50 aspect-video">
+      <iframe
+        src={`https://www.youtube.com/embed/${event.videoId}`}
+        title={event.title}
+        className="w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  ) : null;
 
-      {/* Center: dot — hidden on mobile (dot is absolutely positioned instead) */}
-      <div className="relative flex items-start justify-center w-8 pt-1 max-[767px]:hidden">
+  return (
+    <div ref={ref} className="relative">
+      {/* ── Desktop: text | dot | image ── */}
+      <div className="hidden md:grid grid-cols-[1fr_auto_1fr] gap-8 items-start">
         <motion.div
-          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
-          transition={{ duration: 0.4 }}
-          className="w-3 h-3 rounded-full border-2 border-primary z-10"
-          style={{
-            background: isInView ? "hsl(145 100% 50%)" : "transparent",
-            boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
-          }}
-        />
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }}
+          transition={{ duration: 0.5 }}
+          className="pr-8 text-right"
+        >
+          <div className="flex flex-col items-end">
+            <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
+            <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
+            {event.link && (
+              <ShimmerButton href={event.link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
+                {t("timeline.viewMore")}
+              </ShimmerButton>
+            )}
+          </div>
+        </motion.div>
+
+        <div className="flex items-start justify-center w-8 pt-1">
+          <motion.div
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+            transition={{ duration: 0.4 }}
+            className="w-3 h-3 rounded-full border-2 border-primary z-10"
+            style={dotStyle(isInView)}
+          />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 10 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="pl-8"
+        >
+          {media}
+        </motion.div>
       </div>
 
-      {/* Mobile dot — absolutely pinned to the left track */}
-      <motion.div
-        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
-        transition={{ duration: 0.4 }}
-        className="hidden max-[767px]:block absolute left-[6px] top-1 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-primary z-10"
-        style={{
-          background: isInView ? "hsl(145 100% 50%)" : "transparent",
-          boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
-        }}
-      />
+      {/* ── Mobile: dot-column | content ── */}
+      <div className="grid grid-cols-[16px_1fr] gap-0 md:hidden">
+        {/* Dot column — its center aligns with the left track */}
+        <div className="flex items-start justify-center pt-1">
+          <motion.div
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+            transition={{ duration: 0.4 }}
+            className="w-3 h-3 rounded-full border-2 border-primary z-10 flex-shrink-0"
+            style={dotStyle(isInView)}
+          />
+        </div>
 
-      {/* Right: media always */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 10 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="pl-4 md:pl-8 max-[767px]:col-span-3 max-[767px]:pl-8"
-      >
-        {event.image ? (
-          <div className="overflow-hidden rounded-lg border border-border/50">
-            <img src={event.image} alt={event.title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
+        {/* Content column */}
+        <motion.div
+          initial={{ opacity: 0, x: 10 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 5 }}
+          transition={{ duration: 0.5 }}
+          className="pl-3 flex flex-col gap-3"
+        >
+          <div>
+            <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
+            <h3 className="font-heading text-base font-semibold text-foreground mt-1">{event.title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{event.description}</p>
+            {event.link && (
+              <ShimmerButton href={event.link} target="_blank" rel="noopener noreferrer" className="mt-2 text-xs">
+                {t("timeline.viewMore")}
+              </ShimmerButton>
+            )}
           </div>
-        ) : event.videoId ? (
-          <div className="overflow-hidden rounded-lg border border-border/50 aspect-video">
-            <iframe
-              src={`https://www.youtube.com/embed/${event.videoId}`}
-              title={event.title}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-        ) : null}
-      </motion.div>
+          {media && <div>{media}</div>}
+        </motion.div>
+      </div>
     </div>
   );
 };
@@ -111,37 +138,41 @@ const YearMarker = ({ year }: { year: string }) => {
   const isInView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" });
 
   return (
-    <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-center">
-      <motion.div
-        animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
-        className="text-right pr-4 md:pr-8 max-[767px]:col-span-3 max-[767px]:pl-8"
-      >
-        <h2 className="font-heading text-4xl md:text-5xl font-black text-primary">{year}</h2>
-      </motion.div>
-
-      {/* Dot — desktop only in grid */}
-      <div className="relative flex items-center justify-center w-8 max-[767px]:hidden">
+    <div ref={ref} className="relative">
+      {/* Desktop */}
+      <div className="hidden md:grid grid-cols-[1fr_auto_1fr] gap-8 items-center">
         <motion.div
-          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
-          className="w-4 h-4 rounded-full border-2 border-primary z-10"
-          style={{
-            background: isInView ? "hsl(145 100% 50%)" : "transparent",
-            boxShadow: isInView ? "0 0 16px hsl(145 100% 50% / 0.7)" : "none",
-          }}
-        />
+          animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
+          className="text-right pr-8"
+        >
+          <h2 className="font-heading text-4xl md:text-5xl font-black text-primary">{year}</h2>
+        </motion.div>
+        <div className="flex items-center justify-center w-8">
+          <motion.div
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+            className="w-4 h-4 rounded-full border-2 border-primary z-10"
+            style={dotStyle(isInView, "lg")}
+          />
+        </div>
+        <div className="pl-8" />
       </div>
 
-      {/* Mobile dot — pinned to left track */}
-      <motion.div
-        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
-        className="hidden max-[767px]:block absolute left-[6px] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-primary z-10"
-        style={{
-          background: isInView ? "hsl(145 100% 50%)" : "transparent",
-          boxShadow: isInView ? "0 0 16px hsl(145 100% 50% / 0.7)" : "none",
-        }}
-      />
-
-      <div className="pl-4 md:pl-8 max-[767px]:hidden" />
+      {/* Mobile */}
+      <div className="grid grid-cols-[16px_1fr] gap-0 md:hidden items-center">
+        <div className="flex items-center justify-center">
+          <motion.div
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+            className="w-4 h-4 rounded-full border-2 border-primary z-10 flex-shrink-0"
+            style={dotStyle(isInView, "lg")}
+          />
+        </div>
+        <motion.div
+          animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
+          className="pl-3"
+        >
+          <h2 className="font-heading text-4xl font-black text-primary">{year}</h2>
+        </motion.div>
+      </div>
     </div>
   );
 };
@@ -308,14 +339,14 @@ const AboutTimeline = () => {
     <section ref={sectionRef} className="relative z-10 px-6 py-12">
       <div className="mx-auto max-w-5xl">
         <div className="relative flex flex-col gap-12">
-          {/* Background track */}
+          {/* Background track — desktop: centered, mobile: left-aligned at col boundary */}
           <div
-            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 max-[767px]:left-[6px] max-[767px]:translate-x-0"
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 max-[767px]:left-[7px] max-[767px]:translate-x-0"
             style={{ width: "3px", backgroundColor: "rgb(65, 65, 65)", zIndex: -2 }}
           />
           {/* Progress bar */}
           <motion.div
-            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top max-[767px]:left-[6px] max-[767px]:translate-x-0"
+            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top max-[767px]:left-[7px] max-[767px]:translate-x-0"
             style={{
               width: "3px",
               height: lineHeight,
