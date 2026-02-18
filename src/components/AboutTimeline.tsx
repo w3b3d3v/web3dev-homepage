@@ -28,9 +28,10 @@ interface TimelineYear {
   events: TimelineEvent[];
 }
 
-const TimelineEventItem = ({ event, index }: { event: TimelineEvent; index: number }) => {
+const TimelineEventItem = ({ event }: { event: TimelineEvent }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-15% 0px -15% 0px" });
+  const { t } = useLanguage();
 
   return (
     <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-start min-h-[180px]">
@@ -47,7 +48,7 @@ const TimelineEventItem = ({ event, index }: { event: TimelineEvent; index: numb
           <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
           {event.link && (
             <ShimmerButton href={event.link} target="_blank" rel="noopener noreferrer" className="mt-3 text-xs">
-              Ver mais →
+              {t("timeline.viewMore")}
             </ShimmerButton>
           )}
         </div>
@@ -123,6 +124,7 @@ const YearMarker = ({ year }: { year: string }) => {
 
 const AboutTimeline = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -137,29 +139,29 @@ const AboutTimeline = () => {
       year: "2022",
       events: [
         {
-          month: "Janeiro",
-          title: "Pré-lançamento no Metaverso",
-          description: "Primeiro registro Onchain da Comunidade no Metaverso Web3land, marcado por uma POAP exclusiva. Evento histórico para todos os presentes.",
+          month: t("timeline.2022.jan.month"),
+          title: t("timeline.2022.jan.title"),
+          description: t("timeline.2022.jan.desc"),
           image: timelinePoap,
           link: "https://collectors.poap.xyz/drop/24766",
         },
         {
-          month: "Fevereiro",
-          title: "Captação do Primeiro Grant na NEAR",
-          description: "Dentre os muitos grants que realizamos inauguramos com a NEAR, focando em criação e tradução de conteúdo de qualidade e técnico para devs.",
+          month: t("timeline.2022.feb.month"),
+          title: t("timeline.2022.feb.title"),
+          description: t("timeline.2022.feb.desc"),
           videoId: "Yt6wovZLgf4",
         },
         {
-          month: "Abril",
-          title: "Lançamento primeiro Build",
-          description: "Lançamento da plataforma de Build com bootcamp de smart contracts em Solidity e apresentação oficial da identidade visual.",
+          month: t("timeline.2022.apr.month"),
+          title: t("timeline.2022.apr.title"),
+          description: t("timeline.2022.apr.desc"),
           videoId: "QRjrWEVGgno",
           link: "https://www.youtube.com/live/gunQidhjgcs",
         },
         {
-          month: "Outubro",
-          title: "Crescimento exponencial",
-          description: "Alcançamos 3 mil membros no Discord em menos de um ano, expandindo nossa comunidade para o idioma espanhol.",
+          month: t("timeline.2022.oct.month"),
+          title: t("timeline.2022.oct.title"),
+          description: t("timeline.2022.oct.desc"),
           image: timelineChart2022,
         },
       ],
@@ -168,33 +170,33 @@ const AboutTimeline = () => {
       year: "2023",
       events: [
         {
-          month: "Fevereiro",
-          title: "Primeiro Funding",
-          description: "Ganhamos um investimento significativo celebrado em Live, marcando um ano de sucesso com foco na educação e crescimento da comunidade.",
+          month: t("timeline.2023.feb.month"),
+          title: t("timeline.2023.feb.title"),
+          description: t("timeline.2023.feb.desc"),
           videoId: "Jeo0p0D8ayQ",
         },
         {
-          month: "Março",
-          title: "Festa da Comunidade no Rio de Janeiro",
-          description: "Realizamos o primeiro encontro presencial no Rio de Janeiro, promovendo momentos inesquecíveis!",
+          month: t("timeline.2023.mar.month"),
+          title: t("timeline.2023.mar.title"),
+          description: t("timeline.2023.mar.desc"),
           image: timelineCommunityPhoto,
         },
         {
-          month: "Junho",
-          title: "Primeiro bootcamp presencial",
-          description: "Primeiro bootcamp presencial em parceria com Ethereum Brasil, apoiando hackers a criar aplicações inovadoras com Solidity.",
+          month: t("timeline.2023.jun.month"),
+          title: t("timeline.2023.jun.title"),
+          description: t("timeline.2023.jun.desc"),
           image: timelineDsc06607,
         },
         {
-          month: "Agosto",
-          title: "Ethereum Argentina",
-          description: "Participação em eventos internacionais, incluindo o prestigiado Ethereum Argentina, destacando nossa presença global e engajamento.",
+          month: t("timeline.2023.aug.month"),
+          title: t("timeline.2023.aug.title"),
+          description: t("timeline.2023.aug.desc"),
           videoId: "kOjqCf3vfhs",
         },
         {
-          month: "Setembro",
-          title: "Co-produção Hackathon Hyperdrive",
-          description: "Contribuímos com um dos maiores hackathons globais da Solana, oferecendo workshops e contemplando nossa comunidade com premiações nacionais.",
+          month: t("timeline.2023.sep.month"),
+          title: t("timeline.2023.sep.title"),
+          description: t("timeline.2023.sep.desc"),
           videoId: "kHg2EmVUARw",
         },
       ],
@@ -203,34 +205,34 @@ const AboutTimeline = () => {
       year: "2024",
       events: [
         {
-          month: "Janeiro",
-          title: "Polkadot Academy",
-          description: "Nosso time esteve presente no Polkadot Academy, fortalecendo laços com a comunidade global e absorvendo novos conhecimentos.",
+          month: t("timeline.2024.jan.month"),
+          title: t("timeline.2024.jan.title"),
+          description: t("timeline.2024.jan.desc"),
           image: timelinePolkadot,
         },
         {
-          month: "Abril",
-          title: "Grant da Stellar",
-          description: "Conquistamos um grant da Stellar, que impulsionou nossas iniciativas educacionais e de inovação, trazendo mais recursos para capacitar desenvolvedores.",
+          month: t("timeline.2024.apr.month"),
+          title: t("timeline.2024.apr.title"),
+          description: t("timeline.2024.apr.desc"),
           videoId: "fGMI2m73Cn8",
         },
         {
-          month: "Maio",
-          title: "7.3 mil membros no Discord",
-          description: "Seguimos crescendo e alcançamos a marca de 7.3 mil membros no Discord, consolidando nosso papel como referência em educação Web3 para a América Latina.",
+          month: t("timeline.2024.may.month"),
+          title: t("timeline.2024.may.title"),
+          description: t("timeline.2024.may.desc"),
           image: timelineGraph2024,
         },
         {
-          month: "Julho",
-          title: "Lançamento do Build de Rust",
-          description: "Com apoio do grant da Polkadot, lançamos o Build de Rust, expandindo nossa oferta de cursos técnicos e fortalecendo nossa rede de devs especializados.",
+          month: t("timeline.2024.jul.month"),
+          title: t("timeline.2024.jul.title"),
+          description: t("timeline.2024.jul.desc"),
           videoId: "ROioE9Tlrmc",
           link: "https://www.w3d.community/build",
         },
         {
-          month: "Setembro",
-          title: "Hackathon NFT Brasil",
-          description: "Participamos na co-produção do Hackathon NFT Brasil, apoiando projetos inovadores e oferecendo mentoria especializada, workshops e palestras.",
+          month: t("timeline.2024.sep.month"),
+          title: t("timeline.2024.sep.title"),
+          description: t("timeline.2024.sep.desc"),
           image: timelineHackathonNft,
         },
       ],
@@ -239,46 +241,44 @@ const AboutTimeline = () => {
       year: "2025",
       events: [
         {
-          month: "Fevereiro",
-          title: "Curso introdutório de Rust",
-          description: "Criamos um curso introdutório gratuito de Rust no nosso canal do YouTube para aumentar a taxa de membros graduados e inscritos na Polkadot Academy (PBAx).",
+          month: t("timeline.2025.feb.month"),
+          title: t("timeline.2025.feb.title"),
+          description: t("timeline.2025.feb.desc"),
           videoId: "18sCFMicV-4",
         },
         {
-          month: "Março",
-          title: "Digital Assets — Blockchain.Rio",
-          description: "Participamos do evento Digital Assets parte do projeto Blockchain.Rio in the road, com um Talk sobre Substrate e Governança na Polkadot.",
+          month: t("timeline.2025.mar.month"),
+          title: t("timeline.2025.mar.title"),
+          description: t("timeline.2025.mar.desc"),
           image: timelineDigitalAssets,
         },
         {
-          month: "Maio",
-          title: "Hackathon da TokenNation",
-          description: "Co-produzimos o Hackathon da TokenNation, oferecendo toda estrutura de eventos online e suporte para os Hackers, além do time de mentores.",
+          month: t("timeline.2025.may.month"),
+          title: t("timeline.2025.may.title"),
+          description: t("timeline.2025.may.desc"),
           image: timelineTokennation,
         },
         {
-          month: "Junho",
-          title: "Polkadot Cloud — Evento Presencial",
-          description: "Realizamos um evento presencial sobre Polkadot Cloud e as inovações do ecossistema para criação de computação descentralizada.",
+          month: t("timeline.2025.jun1.month"),
+          title: t("timeline.2025.jun1.title"),
+          description: t("timeline.2025.jun1.desc"),
           image: timelineFoundersHaus,
         },
         {
-          month: "Junho",
-          title: "Palestra na UFSC",
-          description: "Palestra presencial sobre Computação Descentralizada na Polkadot Cloud, realizada na Universidade Federal de Santa Catarina.",
+          month: t("timeline.2025.jun2.month"),
+          title: t("timeline.2025.jun2.title"),
+          description: t("timeline.2025.jun2.desc"),
           image: timelineUfsc,
         },
         {
-          month: "Julho",
-          title: "Hack the Block — BlockchainRio",
-          description: "Colaboramos na co-produção do Hack the Block, Hackathon do Blockchain.Rio, oferecendo monitoria especializada e materiais de suporte educacional.",
+          month: t("timeline.2025.jul.month"),
+          title: t("timeline.2025.jul.title"),
+          description: t("timeline.2025.jul.desc"),
           videoId: "bK9DA2BB7aM",
         },
       ],
     },
   ];
-
-  let eventCounter = 0;
 
   return (
     <section ref={sectionRef} className="relative z-10 px-6 py-12">
@@ -304,10 +304,9 @@ const AboutTimeline = () => {
           {timelineData.map((yearGroup) => (
             <div key={yearGroup.year} className="flex flex-col gap-12">
               <YearMarker year={yearGroup.year} />
-              {yearGroup.events.map((event) => {
-                const idx = eventCounter++;
-                return <TimelineEventItem key={`${yearGroup.year}-${event.month}-${event.title}`} event={event} index={idx} />;
-              })}
+              {yearGroup.events.map((event) => (
+                <TimelineEventItem key={`${yearGroup.year}-${event.month}-${event.title}`} event={event} />
+              ))}
             </div>
           ))}
         </div>

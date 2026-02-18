@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Calendar, FileText, BookOpen, BookMarked, Compass } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage, LANG_TO_URL } from "@/contexts/LanguageContext";
 import web3devLogo from "@/assets/web3dev-logo.svg";
 
 const Navbar = () => {
@@ -11,9 +11,12 @@ const Navbar = () => {
   const [langOpen, setLangOpen] = useState(false);
   const { lang, setLang, t } = useLanguage();
   const navigate = useNavigate();
+  const { locale } = useParams<{ locale?: string }>();
+
+  const currentLocale = locale || "pt-BR";
 
   const navLinks = [
-    { label: t("nav.about"), href: "/about", isRoute: true },
+    { label: t("nav.about"), href: `/${currentLocale}/about`, isRoute: true },
     { label: t("nav.bootcamp"), href: "https://build.w3d.community/courses" },
   ];
 
@@ -27,17 +30,24 @@ const Navbar = () => {
   ];
 
   const langOptions = [
-    { code: "pt" as const, label: "🇧🇷 PT-BR" },
-    { code: "en" as const, label: "🇺🇸 EN-US" },
-    { code: "es" as const, label: "🇪🇸 ES" },
+    { code: "pt" as const, label: "🇧🇷 PT-BR", urlSegment: "pt-BR" },
+    { code: "en" as const, label: "🇺🇸 EN-US", urlSegment: "en-US" },
+    { code: "es" as const, label: "🇪🇸 ES", urlSegment: "es" },
   ];
 
   const currentLang = langOptions.find((l) => l.code === lang)!;
 
+  const handleLangChange = (option: typeof langOptions[0]) => {
+    setLang(option.code);
+    // Navigate to the same page but with the new locale
+    const isAbout = window.location.pathname.includes("/about");
+    navigate(`/${option.urlSegment}${isAbout ? "/about" : ""}`);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="/" className="flex items-center gap-2">
+        <a href={`/${currentLocale}`} className="flex items-center gap-2">
           <img src={web3devLogo} alt="WEB3DEV" className="h-8 md:h-10" />
         </a>
 
@@ -116,7 +126,7 @@ const Navbar = () => {
                   {langOptions.map((option) => (
                     <button
                       key={option.code}
-                      onClick={() => { setLang(option.code); setLangOpen(false); }}
+                      onClick={() => { handleLangChange(option); setLangOpen(false); }}
                       className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-secondary hover:text-foreground ${
                         lang === option.code ? "text-primary" : "text-muted-foreground"
                       }`}
@@ -192,7 +202,7 @@ const Navbar = () => {
                 {langOptions.map((option) => (
                   <button
                     key={option.code}
-                    onClick={() => { setLang(option.code); setMobileOpen(false); }}
+                    onClick={() => { handleLangChange(option); setMobileOpen(false); }}
                     className={`text-sm font-body ${lang === option.code ? "text-primary" : "text-muted-foreground"}`}
                   >
                     {option.label}

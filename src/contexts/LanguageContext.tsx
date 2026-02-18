@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 type Language = "pt" | "en" | "es";
 
@@ -109,6 +110,73 @@ const translations: Record<Language, Record<string, string>> = {
     "about.hero.highlight": "Comunidade",
     "about.hero.subtitle": "Saiba como nossa comunidade cria valor através de",
     "about.hero.subtitleHighlight": "Educação Técnica Gratuita",
+
+    // Timeline
+    "timeline.viewMore": "Ver mais →",
+
+    "timeline.2022.jan.month": "Janeiro",
+    "timeline.2022.jan.title": "Pré-lançamento no Metaverso",
+    "timeline.2022.jan.desc": "Primeiro registro Onchain da Comunidade no Metaverso Web3land, marcado por uma POAP exclusiva. Evento histórico para todos os presentes.",
+    "timeline.2022.feb.month": "Fevereiro",
+    "timeline.2022.feb.title": "Captação do Primeiro Grant na NEAR",
+    "timeline.2022.feb.desc": "Dentre os muitos grants que realizamos inauguramos com a NEAR, focando em criação e tradução de conteúdo de qualidade e técnico para devs.",
+    "timeline.2022.apr.month": "Abril",
+    "timeline.2022.apr.title": "Lançamento primeiro Build",
+    "timeline.2022.apr.desc": "Lançamento da plataforma de Build com bootcamp de smart contracts em Solidity e apresentação oficial da identidade visual.",
+    "timeline.2022.oct.month": "Outubro",
+    "timeline.2022.oct.title": "Crescimento exponencial",
+    "timeline.2022.oct.desc": "Alcançamos 3 mil membros no Discord em menos de um ano, expandindo nossa comunidade para o idioma espanhol.",
+
+    "timeline.2023.feb.month": "Fevereiro",
+    "timeline.2023.feb.title": "Primeiro Funding",
+    "timeline.2023.feb.desc": "Ganhamos um investimento significativo celebrado em Live, marcando um ano de sucesso com foco na educação e crescimento da comunidade.",
+    "timeline.2023.mar.month": "Março",
+    "timeline.2023.mar.title": "Festa da Comunidade no Rio de Janeiro",
+    "timeline.2023.mar.desc": "Realizamos o primeiro encontro presencial no Rio de Janeiro, promovendo momentos inesquecíveis!",
+    "timeline.2023.jun.month": "Junho",
+    "timeline.2023.jun.title": "Primeiro bootcamp presencial",
+    "timeline.2023.jun.desc": "Primeiro bootcamp presencial em parceria com Ethereum Brasil, apoiando hackers a criar aplicações inovadoras com Solidity.",
+    "timeline.2023.aug.month": "Agosto",
+    "timeline.2023.aug.title": "Ethereum Argentina",
+    "timeline.2023.aug.desc": "Participação em eventos internacionais, incluindo o prestigiado Ethereum Argentina, destacando nossa presença global e engajamento.",
+    "timeline.2023.sep.month": "Setembro",
+    "timeline.2023.sep.title": "Co-produção Hackathon Hyperdrive",
+    "timeline.2023.sep.desc": "Contribuímos com um dos maiores hackathons globais da Solana, oferecendo workshops e contemplando nossa comunidade com premiações nacionais.",
+
+    "timeline.2024.jan.month": "Janeiro",
+    "timeline.2024.jan.title": "Polkadot Academy",
+    "timeline.2024.jan.desc": "Nosso time esteve presente no Polkadot Academy, fortalecendo laços com a comunidade global e absorvendo novos conhecimentos.",
+    "timeline.2024.apr.month": "Abril",
+    "timeline.2024.apr.title": "Grant da Stellar",
+    "timeline.2024.apr.desc": "Conquistamos um grant da Stellar, que impulsionou nossas iniciativas educacionais e de inovação, trazendo mais recursos para capacitar desenvolvedores.",
+    "timeline.2024.may.month": "Maio",
+    "timeline.2024.may.title": "7.3 mil membros no Discord",
+    "timeline.2024.may.desc": "Seguimos crescendo e alcançamos a marca de 7.3 mil membros no Discord, consolidando nosso papel como referência em educação Web3 para a América Latina.",
+    "timeline.2024.jul.month": "Julho",
+    "timeline.2024.jul.title": "Lançamento do Build de Rust",
+    "timeline.2024.jul.desc": "Com apoio do grant da Polkadot, lançamos o Build de Rust, expandindo nossa oferta de cursos técnicos e fortalecendo nossa rede de devs especializados.",
+    "timeline.2024.sep.month": "Setembro",
+    "timeline.2024.sep.title": "Hackathon NFT Brasil",
+    "timeline.2024.sep.desc": "Participamos na co-produção do Hackathon NFT Brasil, apoiando projetos inovadores e oferecendo mentoria especializada, workshops e palestras.",
+
+    "timeline.2025.feb.month": "Fevereiro",
+    "timeline.2025.feb.title": "Curso introdutório de Rust",
+    "timeline.2025.feb.desc": "Criamos um curso introdutório gratuito de Rust no nosso canal do YouTube para aumentar a taxa de membros graduados e inscritos na Polkadot Academy (PBAx).",
+    "timeline.2025.mar.month": "Março",
+    "timeline.2025.mar.title": "Digital Assets — Blockchain.Rio",
+    "timeline.2025.mar.desc": "Participamos do evento Digital Assets parte do projeto Blockchain.Rio in the road, com um Talk sobre Substrate e Governança na Polkadot.",
+    "timeline.2025.may.month": "Maio",
+    "timeline.2025.may.title": "Hackathon da TokenNation",
+    "timeline.2025.may.desc": "Co-produzimos o Hackathon da TokenNation, oferecendo toda estrutura de eventos online e suporte para os Hackers, além do time de mentores.",
+    "timeline.2025.jun1.month": "Junho",
+    "timeline.2025.jun1.title": "Polkadot Cloud — Evento Presencial",
+    "timeline.2025.jun1.desc": "Realizamos um evento presencial sobre Polkadot Cloud e as inovações do ecossistema para criação de computação descentralizada.",
+    "timeline.2025.jun2.month": "Junho",
+    "timeline.2025.jun2.title": "Palestra na UFSC",
+    "timeline.2025.jun2.desc": "Palestra presencial sobre Computação Descentralizada na Polkadot Cloud, realizada na Universidade Federal de Santa Catarina.",
+    "timeline.2025.jul.month": "Julho",
+    "timeline.2025.jul.title": "Hack the Block — BlockchainRio",
+    "timeline.2025.jul.desc": "Colaboramos na co-produção do Hack the Block, Hackathon do Blockchain.Rio, oferecendo monitoria especializada e materiais de suporte educacional.",
   },
   en: {
     // Navbar
@@ -210,6 +278,73 @@ const translations: Record<Language, Record<string, string>> = {
     "about.hero.highlight": "History",
     "about.hero.subtitle": "Learn how our community creates value through",
     "about.hero.subtitleHighlight": "Free Technical Education",
+
+    // Timeline
+    "timeline.viewMore": "View more →",
+
+    "timeline.2022.jan.month": "January",
+    "timeline.2022.jan.title": "Pre-launch in the Metaverse",
+    "timeline.2022.jan.desc": "First Onchain record of the Community in the Web3land Metaverse, marked by an exclusive POAP. A historic event for all attendees.",
+    "timeline.2022.feb.month": "February",
+    "timeline.2022.feb.title": "First Grant at NEAR",
+    "timeline.2022.feb.desc": "Among the many grants we secured, we started with NEAR, focusing on creating and translating quality technical content for developers.",
+    "timeline.2022.apr.month": "April",
+    "timeline.2022.apr.title": "First Build Launch",
+    "timeline.2022.apr.desc": "Launch of the Build platform with a Solidity smart contracts bootcamp and the official presentation of our visual identity.",
+    "timeline.2022.oct.month": "October",
+    "timeline.2022.oct.title": "Exponential growth",
+    "timeline.2022.oct.desc": "We reached 3,000 Discord members in less than a year, expanding our community to Spanish speakers.",
+
+    "timeline.2023.feb.month": "February",
+    "timeline.2023.feb.title": "First Funding",
+    "timeline.2023.feb.desc": "We received a significant investment celebrated in a Live event, marking one year of success focused on education and community growth.",
+    "timeline.2023.mar.month": "March",
+    "timeline.2023.mar.title": "Community Party in Rio de Janeiro",
+    "timeline.2023.mar.desc": "We held our first in-person meetup in Rio de Janeiro, creating unforgettable moments!",
+    "timeline.2023.jun.month": "June",
+    "timeline.2023.jun.title": "First in-person bootcamp",
+    "timeline.2023.jun.desc": "First in-person bootcamp in partnership with Ethereum Brasil, supporting hackers to build innovative Solidity applications.",
+    "timeline.2023.aug.month": "August",
+    "timeline.2023.aug.title": "Ethereum Argentina",
+    "timeline.2023.aug.desc": "Participation in international events, including the prestigious Ethereum Argentina, highlighting our global presence and engagement.",
+    "timeline.2023.sep.month": "September",
+    "timeline.2023.sep.title": "Hackathon Hyperdrive Co-production",
+    "timeline.2023.sep.desc": "We contributed to one of Solana's largest global hackathons, offering workshops and awarding our community with national prizes.",
+
+    "timeline.2024.jan.month": "January",
+    "timeline.2024.jan.title": "Polkadot Academy",
+    "timeline.2024.jan.desc": "Our team attended Polkadot Academy, strengthening ties with the global community and absorbing new knowledge.",
+    "timeline.2024.apr.month": "April",
+    "timeline.2024.apr.title": "Stellar Grant",
+    "timeline.2024.apr.desc": "We secured a grant from Stellar, which boosted our educational and innovation initiatives, bringing more resources to empower developers.",
+    "timeline.2024.may.month": "May",
+    "timeline.2024.may.title": "7.3k members on Discord",
+    "timeline.2024.may.desc": "We kept growing and reached 7,300 Discord members, consolidating our role as a Web3 education reference in Latin America.",
+    "timeline.2024.jul.month": "July",
+    "timeline.2024.jul.title": "Rust Build Launch",
+    "timeline.2024.jul.desc": "With support from the Polkadot grant, we launched the Rust Build, expanding our technical course offerings and strengthening our network of specialized devs.",
+    "timeline.2024.sep.month": "September",
+    "timeline.2024.sep.title": "NFT Brasil Hackathon",
+    "timeline.2024.sep.desc": "We co-produced the NFT Brasil Hackathon, supporting innovative projects and providing specialized mentorship, workshops, and talks.",
+
+    "timeline.2025.feb.month": "February",
+    "timeline.2025.feb.title": "Intro Rust Course",
+    "timeline.2025.feb.desc": "We created a free introductory Rust course on our YouTube channel to increase the graduation rate and enrollment in Polkadot Academy (PBAx).",
+    "timeline.2025.mar.month": "March",
+    "timeline.2025.mar.title": "Digital Assets — Blockchain.Rio",
+    "timeline.2025.mar.desc": "We participated in the Digital Assets event, part of the Blockchain.Rio in the road project, with a Talk on Substrate and Polkadot Governance.",
+    "timeline.2025.may.month": "May",
+    "timeline.2025.may.title": "TokenNation Hackathon",
+    "timeline.2025.may.desc": "We co-produced the TokenNation Hackathon, providing the full online event infrastructure and support for Hackers, plus a team of mentors.",
+    "timeline.2025.jun1.month": "June",
+    "timeline.2025.jun1.title": "Polkadot Cloud — In-person Event",
+    "timeline.2025.jun1.desc": "We hosted an in-person event about Polkadot Cloud and ecosystem innovations for creating decentralized computing.",
+    "timeline.2025.jun2.month": "June",
+    "timeline.2025.jun2.title": "Lecture at UFSC",
+    "timeline.2025.jun2.desc": "In-person lecture on Decentralized Computing on Polkadot Cloud, held at the Federal University of Santa Catarina.",
+    "timeline.2025.jul.month": "July",
+    "timeline.2025.jul.title": "Hack the Block — BlockchainRio",
+    "timeline.2025.jul.desc": "We collaborated in co-producing Hack the Block, the Blockchain.Rio Hackathon, offering specialized mentoring and educational support materials.",
   },
   es: {
     // Navbar
@@ -311,13 +446,98 @@ const translations: Record<Language, Record<string, string>> = {
     "about.hero.highlight": "Comunidad",
     "about.hero.subtitle": "Conoce cómo nuestra comunidad crea valor a través de",
     "about.hero.subtitleHighlight": "Educación Técnica Gratuita",
+
+    // Timeline
+    "timeline.viewMore": "Ver más →",
+
+    "timeline.2022.jan.month": "Enero",
+    "timeline.2022.jan.title": "Prelanzamiento en el Metaverso",
+    "timeline.2022.jan.desc": "Primer registro Onchain de la Comunidad en el Metaverso Web3land, marcado por un POAP exclusivo. Evento histórico para todos los presentes.",
+    "timeline.2022.feb.month": "Febrero",
+    "timeline.2022.feb.title": "Captación del Primer Grant en NEAR",
+    "timeline.2022.feb.desc": "Entre los muchos grants que realizamos, inauguramos con NEAR, enfocándonos en la creación y traducción de contenido de calidad técnico para devs.",
+    "timeline.2022.apr.month": "Abril",
+    "timeline.2022.apr.title": "Lanzamiento del primer Build",
+    "timeline.2022.apr.desc": "Lanzamiento de la plataforma Build con bootcamp de smart contracts en Solidity y presentación oficial de la identidad visual.",
+    "timeline.2022.oct.month": "Octubre",
+    "timeline.2022.oct.title": "Crecimiento exponencial",
+    "timeline.2022.oct.desc": "Alcanzamos 3 mil miembros en Discord en menos de un año, expandiendo nuestra comunidad al idioma español.",
+
+    "timeline.2023.feb.month": "Febrero",
+    "timeline.2023.feb.title": "Primer Funding",
+    "timeline.2023.feb.desc": "Ganamos una inversión significativa celebrada en vivo, marcando un año de éxito con foco en la educación y crecimiento de la comunidad.",
+    "timeline.2023.mar.month": "Marzo",
+    "timeline.2023.mar.title": "Fiesta de la Comunidad en Río de Janeiro",
+    "timeline.2023.mar.desc": "Realizamos el primer encuentro presencial en Río de Janeiro, ¡promoviendo momentos inolvidables!",
+    "timeline.2023.jun.month": "Junio",
+    "timeline.2023.jun.title": "Primer bootcamp presencial",
+    "timeline.2023.jun.desc": "Primer bootcamp presencial en asociación con Ethereum Brasil, apoyando a los hackers a crear aplicaciones innovadoras con Solidity.",
+    "timeline.2023.aug.month": "Agosto",
+    "timeline.2023.aug.title": "Ethereum Argentina",
+    "timeline.2023.aug.desc": "Participación en eventos internacionales, incluido el prestigioso Ethereum Argentina, destacando nuestra presencia global y compromiso.",
+    "timeline.2023.sep.month": "Septiembre",
+    "timeline.2023.sep.title": "Coproducción Hackathon Hyperdrive",
+    "timeline.2023.sep.desc": "Contribuimos a uno de los mayores hackathons globales de Solana, ofreciendo workshops y premiando a nuestra comunidad con reconocimientos nacionales.",
+
+    "timeline.2024.jan.month": "Enero",
+    "timeline.2024.jan.title": "Polkadot Academy",
+    "timeline.2024.jan.desc": "Nuestro equipo estuvo presente en Polkadot Academy, fortaleciendo lazos con la comunidad global y absorbiendo nuevos conocimientos.",
+    "timeline.2024.apr.month": "Abril",
+    "timeline.2024.apr.title": "Grant de Stellar",
+    "timeline.2024.apr.desc": "Obtuvimos un grant de Stellar que impulsó nuestras iniciativas educativas y de innovación, trayendo más recursos para capacitar desarrolladores.",
+    "timeline.2024.may.month": "Mayo",
+    "timeline.2024.may.title": "7.3 mil miembros en Discord",
+    "timeline.2024.may.desc": "Seguimos creciendo y alcanzamos la marca de 7.3 mil miembros en Discord, consolidando nuestro papel como referencia en educación Web3 en Latinoamérica.",
+    "timeline.2024.jul.month": "Julio",
+    "timeline.2024.jul.title": "Lanzamiento del Build de Rust",
+    "timeline.2024.jul.desc": "Con apoyo del grant de Polkadot, lanzamos el Build de Rust, ampliando nuestra oferta de cursos técnicos y fortaleciendo nuestra red de devs especializados.",
+    "timeline.2024.sep.month": "Septiembre",
+    "timeline.2024.sep.title": "Hackathon NFT Brasil",
+    "timeline.2024.sep.desc": "Participamos en la coproducción del Hackathon NFT Brasil, apoyando proyectos innovadores y ofreciendo mentoría especializada, workshops y charlas.",
+
+    "timeline.2025.feb.month": "Febrero",
+    "timeline.2025.feb.title": "Curso introductorio de Rust",
+    "timeline.2025.feb.desc": "Creamos un curso introductorio gratuito de Rust en nuestro canal de YouTube para aumentar la tasa de miembros graduados e inscritos en Polkadot Academy (PBAx).",
+    "timeline.2025.mar.month": "Marzo",
+    "timeline.2025.mar.title": "Digital Assets — Blockchain.Rio",
+    "timeline.2025.mar.desc": "Participamos en el evento Digital Assets, parte del proyecto Blockchain.Rio in the road, con una charla sobre Substrate y Gobernanza en Polkadot.",
+    "timeline.2025.may.month": "Mayo",
+    "timeline.2025.may.title": "Hackathon de TokenNation",
+    "timeline.2025.may.desc": "Coproducimos el Hackathon de TokenNation, ofreciendo toda la estructura de eventos online y soporte para los Hackers, además del equipo de mentores.",
+    "timeline.2025.jun1.month": "Junio",
+    "timeline.2025.jun1.title": "Polkadot Cloud — Evento Presencial",
+    "timeline.2025.jun1.desc": "Realizamos un evento presencial sobre Polkadot Cloud y las innovaciones del ecosistema para la creación de computación descentralizada.",
+    "timeline.2025.jun2.month": "Junio",
+    "timeline.2025.jun2.title": "Conferencia en la UFSC",
+    "timeline.2025.jun2.desc": "Conferencia presencial sobre Computación Descentralizada en Polkadot Cloud, realizada en la Universidad Federal de Santa Catarina.",
+    "timeline.2025.jul.month": "Julio",
+    "timeline.2025.jul.title": "Hack the Block — BlockchainRio",
+    "timeline.2025.jul.desc": "Colaboramos en la coproducción de Hack the Block, Hackathon de Blockchain.Rio, ofreciendo mentoría especializada y materiales de apoyo educacional.",
   },
+};
+
+// Map URL locale to Language type
+export const LANG_URL_MAP: Record<string, Language> = {
+  "pt-BR": "pt",
+  "en-US": "en",
+  "es": "es",
+};
+
+// Map Language to URL segment
+export const LANG_TO_URL: Record<Language, string> = {
+  pt: "pt-BR",
+  en: "en-US",
+  es: "es",
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Language>("pt");
+  const [lang, setLangState] = useState<Language>("pt");
+
+  const setLang = (newLang: Language) => {
+    setLangState(newLang);
+  };
 
   const t = (key: string): string => {
     return translations[lang][key] || key;
