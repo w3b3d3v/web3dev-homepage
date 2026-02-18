@@ -59,7 +59,15 @@ const HeroSection = () => {
             loading="lazy"
           />
           <div className="home-hero-video">
-            <video autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
+              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+            >
               <source src={homepageMp4} type="video/mp4" />
               <source src={homepageWebm} type="video/webm" />
             </video>
