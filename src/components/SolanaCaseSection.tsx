@@ -115,13 +115,10 @@ const TimelineItem = ({
           <motion.div
             animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
             transition={{ duration: 0.4 }}
-            className="z-10 flex items-center justify-center rounded-full border border-primary/40 bg-background w-10 h-10"
-            style={{
-              boxShadow: isInView ? `0 0 ${isHeader ? "16" : "12"}px hsl(145 100% 50% / 0.5)` : "none",
-            }}
+            className="z-10 flex items-center justify-center"
           >
             {Icon ? (
-              <Icon className={`${isHeader ? "w-6 h-6" : "w-5 h-5"} text-primary`} />
+              <Icon className={`${isHeader ? "w-7 h-7" : "w-6 h-6"} text-white`} />
             ) : (
               <div className={`rounded-full border-2 border-primary ${isHeader ? "w-4 h-4" : "w-3 h-3"}`} style={dotStyle(isInView, isHeader ? "lg" : "sm")} />
             )}
@@ -144,13 +141,10 @@ const TimelineItem = ({
           <motion.div
             animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
             transition={{ duration: 0.4 }}
-            className="z-10 flex-shrink-0 flex items-center justify-center rounded-full border border-primary/40 bg-background w-8 h-8"
-            style={{
-              boxShadow: isInView ? `0 0 ${isHeader ? "14" : "10"}px hsl(145 100% 50% / 0.5)` : "none",
-            }}
+            className="z-10 flex-shrink-0 flex items-center justify-center"
           >
             {Icon ? (
-              <Icon className={`${isHeader ? "w-5 h-5" : "w-4 h-4"} text-primary`} />
+              <Icon className={`${isHeader ? "w-6 h-6" : "w-5 h-5"} text-white`} />
             ) : (
               <div className={`rounded-full border-2 border-primary ${isHeader ? "w-4 h-4" : "w-3 h-3"}`} style={dotStyle(isInView, isHeader ? "lg" : "sm")} />
             )}
