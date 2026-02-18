@@ -122,7 +122,7 @@ const Footer = ({ hideGallery = false }: { hideGallery?: boolean }) => {
 
             {/* Giant outlined WEB3DEV text */}
             <h6
-              className="font-heading font-black text-[3.6rem] sm:text-[6.1rem] md:text-[8.5rem] lg:text-[12.5rem] leading-none select-none"
+              className="font-heading font-black text-[3.6rem] sm:text-[6.1rem] md:text-[8.5rem] lg:text-[12.5rem] leading-[1.5] select-none"
               style={{
                 color: "hsl(var(--background))",
                 WebkitTextStrokeWidth: "1px",
