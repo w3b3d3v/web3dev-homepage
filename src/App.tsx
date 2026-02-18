@@ -19,9 +19,9 @@ const LocaleWrapper = ({ page }: { page: "index" | "about" }) => {
   const lang = locale ? LANG_URL_MAP[locale] : undefined;
 
   if (!lang) {
-    // Unknown locale — redirect to pt-BR equivalent
+    // Unknown locale — redirect to /pt equivalent
     const rest = location.pathname.replace(`/${locale}`, "");
-    return <Navigate to={`/pt-BR${rest}`} replace />;
+    return <Navigate to={`/pt${rest}`} replace />;
   }
 
   // Set the language based on the URL
@@ -35,14 +35,14 @@ const LocaleWrapper = ({ page }: { page: "index" | "about" }) => {
 const AppRoutes = () => (
   <Routes>
     {/* Root redirect to pt-BR */}
-    <Route path="/" element={<Navigate to="/pt-BR" replace />} />
+    <Route path="/" element={<Navigate to="/pt" replace />} />
 
     {/* Language-prefixed home routes */}
     <Route path="/:locale" element={<LocaleWrapper page="index" />} />
     <Route path="/:locale/about" element={<LocaleWrapper page="about" />} />
 
     {/* Legacy /about without locale → redirect */}
-    <Route path="/about" element={<Navigate to="/pt-BR/about" replace />} />
+    <Route path="/about" element={<Navigate to="/pt/about" replace />} />
 
     <Route path="*" element={<NotFound />} />
   </Routes>

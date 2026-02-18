@@ -30,8 +30,8 @@ const Navbar = () => {
   ];
 
   const langOptions = [
-    { code: "pt" as const, label: "🇧🇷 PT-BR", urlSegment: "pt-BR" },
-    { code: "en" as const, label: "🇺🇸 EN-US", urlSegment: "en-US" },
+    { code: "pt" as const, label: "🇧🇷 PT-BR", urlSegment: "pt" },
+    { code: "en" as const, label: "🇺🇸 EN-US", urlSegment: "en" },
     { code: "es" as const, label: "🇪🇸 ES", urlSegment: "es" },
   ];
 

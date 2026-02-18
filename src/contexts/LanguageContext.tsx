@@ -518,15 +518,15 @@ const translations: Record<Language, Record<string, string>> = {
 
 // Map URL locale to Language type
 export const LANG_URL_MAP: Record<string, Language> = {
-  "pt-BR": "pt",
-  "en-US": "en",
+  "pt": "pt",
+  "en": "en",
   "es": "es",
 };
 
 // Map Language to URL segment
 export const LANG_TO_URL: Record<Language, string> = {
-  pt: "pt-BR",
-  en: "en-US",
+  pt: "pt",
+  en: "en",
   es: "es",
 };
 
