@@ -1,0 +1,44 @@
+# WEB3DEV
+
+> WEB3DEV é uma comunidade de educação técnica gratuita em Web3. Oferecemos bootcamps, grupos de estudo e conteúdo prático para desenvolvedores que querem construir o futuro descentralizado.
+
+A WEB3DEV reúne milhares de devs brasileiros e da América Latina interessados em blockchain, Ethereum, Solana, Solidity, DeFi, NFTs e desenvolvimento Web3. Nossa missão é que ninguém estude Web3 sozinho.
+
+## Nossos Serviços e Domínios
+
+- [WEB3DEV Homepage](https://w3d.community): Página principal da comunidade WEB3DEV
+- [WEB3DEV Homepage (www)](https://www.w3d.community): Alias da página principal
+- [Artigos em Português](https://pt.w3d.community): Arquivo com mais de 1.600 artigos técnicos em português sobre blockchain e Web3
+- [Bootcamp & Cursos](https://build.w3d.community/courses): Bootcamps e cursos práticos de desenvolvimento Web3
+- [Newsletter em Inglês](https://en.w3d.community): Newsletter e conteúdo em inglês sobre Web3
+- [Blockchains](https://blockchains.w3d.community): Informações e recursos sobre diferentes blockchains
+- [Glossário](https://pt.glossario.w3d.community): Glossário de termos Web3 em português
+
+## Recursos para Desenvolvedores
+
+- [Calendário de Eventos](https://lu.ma/web3calendar): Eventos, webinars e meetups da comunidade
+- [Artigos Técnicos](https://pt.w3d.community/): Mais de 1.600 artigos técnicos em português
+- [Guia de Solidity](https://solidity.w3d.community/): Guia completo de Solidity para desenvolvimento de smart contracts
+- [Glossário Web3](https://pt.glossario.w3d.community/): Glossário de termos blockchain e Web3 em português
+- [Roadmap Blockchain](https://roadmap.sh/r/blockchain-br): Roadmap de aprendizado para desenvolvedores blockchain no Brasil
+- [Newsletter](https://en.w3d.community/): Newsletter com curadoria de conteúdo Web3
+
+## Tópicos Cobertos
+
+- Desenvolvimento de Smart Contracts (Solidity, Rust)
+- Blockchain: Ethereum, Solana, Polkadot, Bitcoin
+- DeFi (Finanças Descentralizadas)
+- NFTs e tokens (ERC-20, ERC-721, ERC-1155)
+- DAOs (Organizações Autônomas Descentralizadas)
+- Zero Knowledge Proofs
+- Segurança em contratos inteligentes
+- Desenvolvimento Web3 full-stack
+
+## Redes Sociais
+
+- [Twitter](https://twitter.com/web3dev_)
+- [Discord](https://discord.gg/yd3xuZEb)
+- [GitHub](https://github.com/w3b3d3v)
+- [LinkedIn](https://www.linkedin.com/company/web3dev)
+- [YouTube](https://www.youtube.com/@web3dev)
+- [Forum](https://forum.w3d.community)
