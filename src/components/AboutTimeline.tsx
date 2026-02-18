@@ -40,7 +40,7 @@ const TimelineEventItem = ({ event }: { event: TimelineEvent }) => {
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: -10 }}
         transition={{ duration: 0.5 }}
-        className="pr-4 md:pr-8 text-right"
+        className="pr-4 md:pr-8 text-right max-[767px]:col-span-3 max-[767px]:pl-8"
       >
         <div className="flex flex-col items-end">
           <span className="text-primary font-heading font-semibold text-base">{event.month}</span>
@@ -54,8 +54,8 @@ const TimelineEventItem = ({ event }: { event: TimelineEvent }) => {
         </div>
       </motion.div>
 
-      {/* Center: dot */}
-      <div className="relative flex items-start justify-center w-8 pt-1">
+      {/* Center: dot — hidden on mobile (dot is absolutely positioned instead) */}
+      <div className="relative flex items-start justify-center w-8 pt-1 max-[767px]:hidden">
         <motion.div
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
           transition={{ duration: 0.4 }}
@@ -67,12 +67,23 @@ const TimelineEventItem = ({ event }: { event: TimelineEvent }) => {
         />
       </div>
 
+      {/* Mobile dot — absolutely pinned to the left track */}
+      <motion.div
+        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+        transition={{ duration: 0.4 }}
+        className="hidden max-[767px]:block absolute left-[6px] top-1 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-primary z-10"
+        style={{
+          background: isInView ? "hsl(145 100% 50%)" : "transparent",
+          boxShadow: isInView ? "0 0 12px hsl(145 100% 50% / 0.6)" : "none",
+        }}
+      />
+
       {/* Right: media always */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 10 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="pl-4 md:pl-8"
+        className="pl-4 md:pl-8 max-[767px]:col-span-3 max-[767px]:pl-8"
       >
         {event.image ? (
           <div className="overflow-hidden rounded-lg border border-border/50">
@@ -103,11 +114,13 @@ const YearMarker = ({ year }: { year: string }) => {
     <div ref={ref} className="relative grid grid-cols-[1fr_auto_1fr] gap-0 md:gap-8 items-center">
       <motion.div
         animate={isInView ? { opacity: 1 } : { opacity: 0.3 }}
-        className="text-right pr-4 md:pr-8"
+        className="text-right pr-4 md:pr-8 max-[767px]:col-span-3 max-[767px]:pl-8"
       >
         <h2 className="font-heading text-4xl md:text-5xl font-black text-primary">{year}</h2>
       </motion.div>
-      <div className="relative flex items-center justify-center w-8">
+
+      {/* Dot — desktop only in grid */}
+      <div className="relative flex items-center justify-center w-8 max-[767px]:hidden">
         <motion.div
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
           className="w-4 h-4 rounded-full border-2 border-primary z-10"
@@ -117,7 +130,18 @@ const YearMarker = ({ year }: { year: string }) => {
           }}
         />
       </div>
-      <div className="pl-4 md:pl-8" />
+
+      {/* Mobile dot — pinned to left track */}
+      <motion.div
+        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
+        className="hidden max-[767px]:block absolute left-[6px] top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-primary z-10"
+        style={{
+          background: isInView ? "hsl(145 100% 50%)" : "transparent",
+          boxShadow: isInView ? "0 0 16px hsl(145 100% 50% / 0.7)" : "none",
+        }}
+      />
+
+      <div className="pl-4 md:pl-8 max-[767px]:hidden" />
     </div>
   );
 };
