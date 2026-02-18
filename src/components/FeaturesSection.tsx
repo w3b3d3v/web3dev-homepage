@@ -128,7 +128,7 @@ const CommunityCard = ({ config, index }: { config: CardConfig; index: number })
               playsInline
               preload="auto"
               ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              style={{ objectFit: "contain", width: "100%", height: "100%" }}
             >
               <source src={config.media.mp4} type="video/mp4" />
               <source src={config.media.webm} type="video/webm" />
