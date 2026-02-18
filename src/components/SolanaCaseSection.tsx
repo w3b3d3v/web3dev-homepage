@@ -1,8 +1,16 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import ShimmerButton from "@/components/ShimmerButton";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import communityMp4 from "@/assets/video/community.mp4";
 import communityWebm from "@/assets/video/community.webm";
+import {
+  HistoryIcon1,
+  HistoryIcon2,
+  HistoryIcon3,
+  HistoryIcon4,
+  HistoryIcon5,
+  HistoryIcon6,
+} from "@/components/icons/TimelineIcons";
 import timelineHackathon from "@/assets/timeline-2-hackathon.webp";
 import timelineBootcamp from "@/assets/timeline-3-bootcamp.webp";
 import timelineTalents from "@/assets/timeline-4-talents.webp";
@@ -19,6 +27,7 @@ const TimelineItem = ({
   description,
   image,
   video,
+  icon: Icon,
   link,
   index,
   viewMoreLabel,
@@ -29,6 +38,7 @@ const TimelineItem = ({
   description: string;
   image?: string;
   video?: { mp4: string; webm: string };
+  icon?: React.ComponentType<{ className?: string }>;
   link?: string;
   index: number;
   viewMoreLabel: string;
@@ -101,13 +111,21 @@ const TimelineItem = ({
           {textContent}
         </motion.div>
 
-        <div className="flex items-center justify-center w-8">
+        <div className="flex items-center justify-center w-10">
           <motion.div
             animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
             transition={{ duration: 0.4 }}
-            className={`rounded-full border-2 border-primary z-10 ${isHeader ? "w-4 h-4" : "w-3 h-3"}`}
-            style={dotStyle(isInView, isHeader ? "lg" : "sm")}
-          />
+            className="z-10 flex items-center justify-center rounded-full border border-primary/40 bg-background w-10 h-10"
+            style={{
+              boxShadow: isInView ? `0 0 ${isHeader ? "16" : "12"}px hsl(145 100% 50% / 0.5)` : "none",
+            }}
+          >
+            {Icon ? (
+              <Icon className={`${isHeader ? "w-6 h-6" : "w-5 h-5"} text-primary`} />
+            ) : (
+              <div className={`rounded-full border-2 border-primary ${isHeader ? "w-4 h-4" : "w-3 h-3"}`} style={dotStyle(isInView, isHeader ? "lg" : "sm")} />
+            )}
+          </motion.div>
         </div>
 
         <motion.div
@@ -121,14 +139,22 @@ const TimelineItem = ({
       </div>
 
       {/* ── Mobile: dot-column | content ── */}
-      <div className="grid grid-cols-[16px_1fr] gap-0 md:hidden items-start">
+      <div className="grid grid-cols-[32px_1fr] gap-0 md:hidden items-start">
         <div className="flex items-start justify-center pt-1">
           <motion.div
             animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0.3 }}
             transition={{ duration: 0.4 }}
-            className={`rounded-full border-2 border-primary z-10 flex-shrink-0 ${isHeader ? "w-4 h-4" : "w-3 h-3"}`}
-            style={dotStyle(isInView, isHeader ? "lg" : "sm")}
-          />
+            className="z-10 flex-shrink-0 flex items-center justify-center rounded-full border border-primary/40 bg-background w-8 h-8"
+            style={{
+              boxShadow: isInView ? `0 0 ${isHeader ? "14" : "10"}px hsl(145 100% 50% / 0.5)` : "none",
+            }}
+          >
+            {Icon ? (
+              <Icon className={`${isHeader ? "w-5 h-5" : "w-4 h-4"} text-primary`} />
+            ) : (
+              <div className={`rounded-full border-2 border-primary ${isHeader ? "w-4 h-4" : "w-3 h-3"}`} style={dotStyle(isInView, isHeader ? "lg" : "sm")} />
+            )}
+          </motion.div>
         </div>
 
         <motion.div
@@ -169,33 +195,39 @@ const SolanaCaseSection = () => {
       description: "",
       image: undefined,
       isHeader: true,
+      icon: HistoryIcon1,
     },
     {
       title: t("solana.card1.title"),
       description: t("solana.card1.desc"),
       link: "https://pt.w3d.community/search?q=solana",
       video: { mp4: communityMp4, webm: communityWebm },
+      icon: HistoryIcon2,
     },
     {
       title: t("solana.card2.title"),
       description: t("solana.card2.desc"),
       image: timelineHackathon,
+      icon: HistoryIcon3,
     },
     {
       title: t("solana.card3.title"),
       description: t("solana.card3.desc"),
       image: timelineBootcamp,
+      icon: HistoryIcon4,
     },
     {
       title: t("solana.card4.title"),
       description: t("solana.card4.desc"),
       image: timelineTalents,
+      icon: HistoryIcon5,
     },
     {
       title: t("solana.card5.title"),
       description: t("solana.card5.desc"),
       image: timelinePlaylist,
       link: "https://youtube.com/playlist?list=PLVX4xVoD65UOnAi_8t69_s7Dh4WiTziS2",
+      icon: HistoryIcon6,
     },
   ];
 
@@ -205,12 +237,12 @@ const SolanaCaseSection = () => {
         <div className="relative flex flex-col gap-16">
           {/* Gray background track */}
           <div
-            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 max-[767px]:left-[7px] max-[767px]:translate-x-0"
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 max-[767px]:left-[15px] max-[767px]:translate-x-0"
             style={{ width: "3px", backgroundColor: "rgb(65, 65, 65)", zIndex: -2 }}
           />
           {/* Animated gradient progress bar */}
           <motion.div
-            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top max-[767px]:left-[7px] max-[767px]:translate-x-0"
+            className="absolute left-1/2 top-0 -translate-x-1/2 origin-top max-[767px]:left-[15px] max-[767px]:translate-x-0"
             style={{
               width: "3px",
               height: lineHeight,
