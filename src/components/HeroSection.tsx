@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ShimmerButton from "@/components/ShimmerButton";
+import discordWindow from "@/assets/discord-window.webp";
+import discordWindow500 from "@/assets/discord-window-500.webp";
+import discordWindow800 from "@/assets/discord-window-800.webp";
+import discordWindow1080 from "@/assets/discord-window-1080.webp";
+import homepageMp4 from "@/assets/video/homepage.mp4";
+import homepageWebm from "@/assets/video/homepage.webm";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -45,8 +51,8 @@ const HeroSection = () => {
       >
         <address className="home-hero-image-wrapper">
           <img
-            src="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window.webp"
-            srcSet="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-800.webp 800w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window-p-1080.webp 1080w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66552675a67896b4ce0946d7_discord_window.webp 1200w"
+            src={discordWindow}
+            srcSet={`${discordWindow500} 500w, ${discordWindow800} 800w, ${discordWindow1080} 1080w, ${discordWindow} 1200w`}
             sizes="(max-width: 1200px) 100vw, 1200px"
             alt="WEB3DEV Discord community"
             className="home-hero-image"
@@ -54,8 +60,8 @@ const HeroSection = () => {
           />
           <div className="home-hero-video">
             <video autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
-              <source src="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F66927760f10e84623efcdf06_homepage-transcode.mp4" type="video/mp4" />
-              <source src="https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F66927760f10e84623efcdf06_homepage-transcode.webm" type="video/webm" />
+              <source src={homepageMp4} type="video/mp4" />
+              <source src={homepageWebm} type="video/webm" />
             </video>
           </div>
         </address>

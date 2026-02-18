@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import TagsMarquee from "@/components/TagsMarquee";
 import AboutTimeline from "@/components/AboutTimeline";
 import { useLanguage } from "@/contexts/LanguageContext";
+import danielCukier from "@/assets/about/daniel-cukier.jpg";
+import yanLuiz from "@/assets/about/yan-luiz.jpg";
+import annaBida from "@/assets/about/anna-bida.avif";
 
 const About = () => {
   const { t } = useLanguage();
@@ -56,19 +59,19 @@ const About = () => {
                 {[
                   {
                     name: "Daniel Cukier",
-                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6871436eab2a07f357ccb4bd_daniel%20cukier.jpg",
+                    image: danielCukier,
                     bio: "Developer since 1995, in crypto since 2016.",
                     roles: ["Founder of Playax", "CTO of Elo7", "CTO of Pravaler", "PhD in Computer Science"],
                   },
                   {
                     name: "Yan Luiz",
-                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/687143cd6b733a6ba7e88e8f_yan%20luiz.jpeg",
+                    image: yanLuiz,
                     bio: "Developer since 2014, in crypto since 2016.",
                     roles: ["Youtuber", "Solidity and Rust Teacher", "Blockchain Developer", "Web Analytics"],
                   },
                   {
                     name: "Anna Bida",
-                    image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a1708fb4a8cb0f02b8e94_Anna%20Bida.avif",
+                    image: annaBida,
                     bio: "Entrepreneur since 2015.",
                     roles: ["Project Manager", "Community Manager", "Digital Marketing", "Educator"],
                   },

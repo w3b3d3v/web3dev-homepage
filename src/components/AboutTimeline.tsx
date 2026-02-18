@@ -2,6 +2,17 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import timelinePoap from "@/assets/timeline/poap.webp";
+import timelineChart2022 from "@/assets/timeline/chart-2022.png";
+import timelineCommunityPhoto from "@/assets/timeline/community-photo.webp";
+import timelineDsc06607 from "@/assets/timeline/dsc06607.avif";
+import timelinePolkadot from "@/assets/timeline/polkadot.avif";
+import timelineGraph2024 from "@/assets/timeline/graph2024.avif";
+import timelineHackathonNft from "@/assets/timeline/hackathon-nft-brasil.avif";
+import timelineDigitalAssets from "@/assets/timeline/digital-assets.png";
+import timelineTokennation from "@/assets/timeline/tokennation.jpg";
+import timelineFoundersHaus from "@/assets/timeline/founders-haus.png";
+import timelineUfsc from "@/assets/timeline/ufsc.png";
 
 interface TimelineEvent {
   month: string;
@@ -129,7 +140,7 @@ const AboutTimeline = () => {
           month: "Janeiro",
           title: "Pré-lançamento no Metaverso",
           description: "Primeiro registro Onchain da Comunidade no Metaverso Web3land, marcado por uma POAP exclusiva. Evento histórico para todos os presentes.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/66927989b9caea629b2bea95_poap.webp",
+          image: timelinePoap,
           link: "https://collectors.poap.xyz/drop/24766",
         },
         {
@@ -149,7 +160,7 @@ const AboutTimeline = () => {
           month: "Outubro",
           title: "Crescimento exponencial",
           description: "Alcançamos 3 mil membros no Discord em menos de um ano, expandindo nossa comunidade para o idioma espanhol.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/642c46919276b08970e98da8_chart%20(7).png",
+          image: timelineChart2022,
         },
       ],
     },
@@ -166,13 +177,13 @@ const AboutTimeline = () => {
           month: "Março",
           title: "Festa da Comunidade no Rio de Janeiro",
           description: "Realizamos o primeiro encontro presencial no Rio de Janeiro, promovendo momentos inesquecíveis!",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6658a0793bf07775a6fb1659_Foto_Comuniidade.webp",
+          image: timelineCommunityPhoto,
         },
         {
           month: "Junho",
           title: "Primeiro bootcamp presencial",
           description: "Primeiro bootcamp presencial em parceria com Ethereum Brasil, apoiando hackers a criar aplicações inovadoras com Solidity.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a10700822921f7ae7e255_DSC06607%20(1).avif",
+          image: timelineDsc06607,
         },
         {
           month: "Agosto",
@@ -195,7 +206,7 @@ const AboutTimeline = () => {
           month: "Janeiro",
           title: "Polkadot Academy",
           description: "Nosso time esteve presente no Polkadot Academy, fortalecendo laços com a comunidade global e absorvendo novos conhecimentos.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a11395f6dc5add0605d57_Polkadot%202.avif",
+          image: timelinePolkadot,
         },
         {
           month: "Abril",
@@ -207,7 +218,7 @@ const AboutTimeline = () => {
           month: "Maio",
           title: "7.3 mil membros no Discord",
           description: "Seguimos crescendo e alcançamos a marca de 7.3 mil membros no Discord, consolidando nosso papel como referência em educação Web3 para a América Latina.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671b5a27bd9291c05e53538d_graph2024.avif",
+          image: timelineGraph2024,
         },
         {
           month: "Julho",
@@ -220,7 +231,7 @@ const AboutTimeline = () => {
           month: "Setembro",
           title: "Hackathon NFT Brasil",
           description: "Participamos na co-produção do Hackathon NFT Brasil, apoiando projetos inovadores e oferecendo mentoria especializada, workshops e palestras.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/671a12557ac63201e58db37c_Hackathon%20NFT%20Brasil.avif",
+          image: timelineHackathonNft,
         },
       ],
     },
@@ -237,25 +248,25 @@ const AboutTimeline = () => {
           month: "Março",
           title: "Digital Assets — Blockchain.Rio",
           description: "Participamos do evento Digital Assets parte do projeto Blockchain.Rio in the road, com um Talk sobre Substrate e Governança na Polkadot.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/68712321b6c4a2e445f9306b_digital%20assets%20(1).png",
+          image: timelineDigitalAssets,
         },
         {
           month: "Maio",
           title: "Hackathon da TokenNation",
           description: "Co-produzimos o Hackathon da TokenNation, oferecendo toda estrutura de eventos online e suporte para os Hackers, além do time de mentores.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6870ec14e76ce1fc594df616_TOKENNATION_%40mayarabarbosa_-2218.jpg",
+          image: timelineTokennation,
         },
         {
           month: "Junho",
           title: "Polkadot Cloud — Evento Presencial",
           description: "Realizamos um evento presencial sobre Polkadot Cloud e as inovações do ecossistema para criação de computação descentralizada.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/68711e9dd6dc81cc5db19409_Talk%20founders%20haus.png",
+          image: timelineFoundersHaus,
         },
         {
           month: "Junho",
           title: "Palestra na UFSC",
           description: "Palestra presencial sobre Computação Descentralizada na Polkadot Cloud, realizada na Universidade Federal de Santa Catarina.",
-          image: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/687146bef959fd83c843e0c3_ufsc%20(1).png",
+          image: timelineUfsc,
         },
         {
           month: "Julho",

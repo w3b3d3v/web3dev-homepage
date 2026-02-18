@@ -1,6 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import communityCard1 from "@/assets/features/community-card-1.webp";
+import communityCard1_500 from "@/assets/features/community-card-1-500.webp";
+import communityCard3 from "@/assets/features/community-card-3.webp";
+import communityCard3_500 from "@/assets/features/community-card-3-500.webp";
+import communityCard4 from "@/assets/features/community-card-4.webp";
+import communityCard4_500 from "@/assets/features/community-card-4-500.webp";
+import chartVideoPoster from "@/assets/features/chart-video-poster.jpg";
+import chartMp4 from "@/assets/video/chart.mp4";
+import chartWebm from "@/assets/video/chart.webm";
 
 type CardConfig = {
   titleKey: string;
@@ -24,9 +33,8 @@ const cards: CardConfig[] = [
     accentColor: "var(--base-green)",
     media: {
       type: "image",
-      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570.webp",
-      srcSet:
-        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b24d5b44b79ed99802_DSC06570.webp 579w",
+      src: communityCard1,
+      srcSet: `${communityCard1_500} 500w, ${communityCard1} 579w`,
       alt: "Developer studying at computer",
     },
   },
@@ -39,10 +47,9 @@ const cards: CardConfig[] = [
     accentColor: "var(--base-purple)",
     media: {
       type: "video",
-      poster:
-        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-poster-00001.jpg",
-      mp4: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-transcode.mp4",
-      webm: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c%2F6655686ec02e3c973346fdc2_chart_video-transcode.webm",
+      poster: chartVideoPoster,
+      mp4: chartMp4,
+      webm: chartWebm,
     },
   },
   {
@@ -54,9 +61,8 @@ const cards: CardConfig[] = [
     accentColor: "var(--radiant-green)",
     media: {
       type: "image",
-      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342.webp",
-      srcSet:
-        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2908ebdd761ba4a2e_DSC06342.webp 579w",
+      src: communityCard3,
+      srcSet: `${communityCard3_500} 500w, ${communityCard3} 579w`,
       alt: "Group of students at computers",
     },
   },
@@ -69,9 +75,8 @@ const cards: CardConfig[] = [
     accentColor: "var(--base-blue)",
     media: {
       type: "image",
-      src: "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606.webp",
-      srcSet:
-        "https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606-p-500.webp 500w, https://cdn.prod.website-files.com/62a8ec427bc5320b15a57b9c/6654e3b2791732a30aea98d5_DSC06606.webp 579w",
+      src: communityCard4,
+      srcSet: `${communityCard4_500} 500w, ${communityCard4} 579w`,
       alt: "Bootcamp group photo",
     },
   },
