@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import ShimmerButton from "@/components/ShimmerButton";
 import { useRef } from "react";
-import timelineCommunity from "@/assets/timeline-1-community.jpg";
+import communityMp4 from "@/assets/video/community.mp4";
+import communityWebm from "@/assets/video/community.webm";
 import timelineHackathon from "@/assets/timeline-2-hackathon.webp";
 import timelineBootcamp from "@/assets/timeline-3-bootcamp.webp";
 import timelineTalents from "@/assets/timeline-4-talents.webp";
@@ -17,6 +18,7 @@ const TimelineItem = ({
   title,
   description,
   image,
+  video,
   link,
   index,
   viewMoreLabel,
@@ -26,6 +28,7 @@ const TimelineItem = ({
   title: string;
   description: string;
   image?: string;
+  video?: { mp4: string; webm: string };
   link?: string;
   index: number;
   viewMoreLabel: string;
@@ -64,7 +67,22 @@ const TimelineItem = ({
     </>
   );
 
-  const imageContent = image ? (
+  const mediaContent = video ? (
+    <div className="overflow-hidden rounded-lg border border-border/50">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
+        className="w-full h-40 md:h-48 object-cover"
+      >
+        <source src={video.webm} type="video/webm" />
+        <source src={video.mp4} type="video/mp4" />
+      </video>
+    </div>
+  ) : image ? (
     <div className="overflow-hidden rounded-lg border border-border/50">
       <img src={image} alt={title} className="w-full h-40 md:h-48 object-cover" loading="lazy" />
     </div>
@@ -98,7 +116,7 @@ const TimelineItem = ({
           transition={{ duration: 0.5, delay: 0.15 }}
           className="pl-8"
         >
-          {imageContent ?? <div />}
+          {mediaContent ?? <div />}
         </motion.div>
       </div>
 
@@ -120,7 +138,7 @@ const TimelineItem = ({
           className="pl-3 flex flex-col gap-3"
         >
           {textContent}
-          {imageContent && <div>{imageContent}</div>}
+          {mediaContent && <div>{mediaContent}</div>}
         </motion.div>
       </div>
     </div>
@@ -156,7 +174,7 @@ const SolanaCaseSection = () => {
       title: t("solana.card1.title"),
       description: t("solana.card1.desc"),
       link: "https://pt.w3d.community/search?q=solana",
-      image: timelineCommunity,
+      video: { mp4: communityMp4, webm: communityWebm },
     },
     {
       title: t("solana.card2.title"),
