@@ -25,7 +25,7 @@ const HeroSection = () => {
           <span className="text-gradient-green">Web3</span> {t("hero.title2")}
         </h1>
 
-        <p className="mx-auto mt-6 max-w-xl font-body text-xl text-muted-foreground md:text-[1.6rem]">
+        <p className="mx-auto mt-6 max-w-xl font-body text-xl leading-[1.5] text-muted-foreground md:text-[1.6rem]">
           {t("hero.subtitle")}{" "}
           <span className="text-primary font-medium">{t("hero.highlight")}</span>
         </p>
